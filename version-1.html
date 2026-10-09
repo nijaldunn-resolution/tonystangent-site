@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anthony J. Brown · Jacksonville</title>
+<meta name="description" content="Anthony J. Brown — Jacksonville community advocate, founder of Red Alliance for Justice. Repair the redlined neighborhoods, and all of Jacksonville rises.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: the same campaign family as version 3, turned up a notch.
+   Opens on a navy field, uppercase Franklin headlines, red used for emphasis
+   and data, serif for his words. Single committed light look. */
+:root{
+  --navy:#14233C;
+  --navy-2:#1E3354;
+  --paper:#FFFFFF;
+  --paper-2:#F2F4F7;      /* mist */
+  --card:#FFFFFF;
+  --ink:#1B2333;
+  --ink-2:#55607A;
+  --rule:#DCE1E8;
+  --red:#A12B2E;
+  --red-dark:#86211F;
+  --red-ink:#FFFFFF;
+  --river:#2F5A8A;        /* steel blue for funded money */
+  --river-soft:#EAF0F7;
+  --gold:#B8862B;
+  --on-navy:#C9D2E0;
+  --sans:"Libre Franklin", "Franklin Gothic Medium", "Helvetica Neue", Arial, sans-serif;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --wrap:1180px;
+  color-scheme: light;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.7 var(--serif);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+p{margin:0}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--sans);color:var(--navy);margin:0;text-wrap:balance}
+h2{font-size:clamp(2rem,4.2vw,3.1rem);font-weight:900;line-height:1.02;letter-spacing:-.01em;text-transform:uppercase}
+h3{font-size:1.4rem;font-weight:800;line-height:1.15}
+.eyebrow{font:700 .75rem/1.3 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.lede{font-size:1.18rem;color:var(--ink-2);max-width:62ch}
+.mono{font-family:var(--sans);font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+section{padding-block:clamp(64px,8vw,104px);border-top:1px solid var(--rule)}
+.sec-head{display:grid;gap:14px;margin-bottom:44px;max-width:800px}
+.sec-head h2::after{content:"";display:block;width:56px;height:4px;background:var(--red);margin-top:18px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;font:700 .85rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:16px 26px;border:2px solid var(--navy);background:transparent;color:var(--navy);text-decoration:none;cursor:pointer;border-radius:3px;transition:background .15s,color .15s,border-color .15s}
+.btn:hover{background:var(--navy);color:#fff}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.btn.red:hover{background:var(--red-dark);border-color:var(--red-dark)}
+.btn.small{padding:12px 18px;font-size:.78rem}
+.btn.onnavy{border-color:#fff;color:#fff}
+.btn.onnavy:hover{background:#fff;color:var(--navy)}
+
+/* ---------- header ---------- */
+.utility{background:var(--red);color:#fff;font:600 .72rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase}
+.utility .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:34px}
+.utility a{color:#fff;text-decoration:none}
+.utility a:hover{text-decoration:underline}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper);border-bottom:1px solid var(--rule);transition:box-shadow .2s}
+.bar.scrolled{box-shadow:0 6px 24px rgba(20,35,60,.08)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:74px;position:relative}
+.mark{text-decoration:none;display:flex;align-items:center;gap:12px;white-space:nowrap}
+.mark .seal{width:40px;height:40px;background:var(--navy);color:#fff;display:grid;place-items:center;font:900 .95rem/1 var(--sans);letter-spacing:.02em;border-bottom:4px solid var(--red)}
+.mark b{font:900 1.3rem/1 var(--sans);color:var(--navy);text-transform:uppercase;letter-spacing:.02em}
+.nav{display:flex;gap:24px;font:600 .8rem var(--sans);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.nav a{text-decoration:none;color:var(--navy);padding-block:6px;border-bottom:2px solid transparent}
+.nav a:hover{border-bottom-color:var(--red)}
+.menu-btn{all:unset;display:none;cursor:pointer;font:700 .8rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--navy);padding:10px 0}
+.menu-btn:focus-visible{outline:3px solid var(--red)}
+@media (max-width:1000px){
+  .nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--paper);flex-direction:column;gap:0;border-bottom:1px solid var(--rule);padding:8px clamp(16px,4vw,40px) 16px}
+  .nav.open{display:flex}
+  .nav a{padding-block:12px;border-bottom:1px solid var(--rule)}
+  .menu-btn{display:inline-block}
+  .bar .btn{display:none}
+}
+
+/* ---------- hero (navy field) ---------- */
+.hero{background:var(--navy);color:var(--on-navy);border-top:0;padding-block:clamp(48px,7vw,88px) 0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero-grid>*{min-width:0}
+.hero .eyebrow{color:#E9A3A3}
+.hero h1{color:#fff;font-size:clamp(2.4rem,5.4vw,4.4rem);font-weight:900;line-height:1;letter-spacing:-.015em;text-transform:uppercase}
+.hero h1 em{font-style:normal;color:#fff;background:linear-gradient(transparent 62%,var(--red) 62%,var(--red) 92%,transparent 92%)}
+.hero .quote-cite{margin-top:18px;font:700 .8rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--on-navy)}
+.hero .intro{margin-top:28px;display:grid;gap:26px;max-width:58ch}
+.hero .intro p{font-size:1.15rem}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.portrait{position:relative;isolation:isolate;max-width:380px;width:100%;justify-self:end}
+.portrait .duo{aspect-ratio:4/5;max-width:100%;overflow:hidden;background:var(--navy-2);border:6px solid #fff}
+.portrait .duo img{width:100%;height:100%;object-fit:cover;object-position:50% 16%;filter:saturate(.9) contrast(1.04)}
+.portrait .tag{position:absolute;right:-6px;bottom:28px;background:var(--red);color:#fff;padding:12px 18px;font:800 .8rem/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;text-align:right}
+.portrait .tag small{display:block;font-weight:500;opacity:.85;margin-top:2px}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.portrait{justify-self:start;max-width:320px}}
+
+/* election strip */
+.strip{margin-top:clamp(44px,6vw,72px);background:var(--paper-2);color:var(--ink)}
+.strip .wrap{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;padding-block:24px}
+.strip .count{font:900 3rem/1 var(--sans);color:var(--red);display:grid;gap:4px}
+.strip .count small{font:700 .7rem/1.3 var(--sans);letter-spacing:.12em;color:var(--ink-2);text-transform:uppercase;max-width:22ch}
+.dates{display:flex;flex-wrap:wrap;gap:12px 30px;font:500 .92rem/1.4 var(--sans);color:var(--navy)}
+.dates div{padding-left:14px;border-left:3px solid var(--rule)}
+.dates b{display:block;font:700 .68rem var(--sans);color:var(--ink-2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px}
+@media (max-width:640px){.strip .wrap{grid-template-columns:1fr}}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,72px)}
+.about-grid>*{min-width:0}
+.bio{display:grid;gap:18px;font-size:1.1rem;align-content:start}
+.bio h2{margin-bottom:6px}
+.roles{list-style:none;padding:0;margin:0;background:var(--paper-2);border-top:4px solid var(--navy);padding:8px 26px}
+.roles li{display:grid;grid-template-columns:1fr auto;gap:12px;padding:13px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.roles li:last-child{border-bottom:0}
+.roles li span{font:700 1rem var(--sans);color:var(--navy)}
+.roles li small{font:600 .68rem var(--sans);letter-spacing:.1em;color:var(--ink-2);text-transform:uppercase;text-align:right}
+blockquote{margin:0;padding-top:22px;border-top:4px solid var(--red)}
+blockquote p{font:italic 400 1.22rem/1.5 var(--serif);color:var(--navy)}
+blockquote footer{margin-top:10px;font:600 .74rem var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+blockquote footer a{color:var(--ink-2)}
+.quotes{display:grid;gap:30px;margin-top:32px}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr}}
+
+/* ---------- issues explorer ---------- */
+#issues{background:var(--paper-2)}
+.explorer{display:grid;grid-template-columns:290px 1fr;border:1px solid var(--rule);border-top:4px solid var(--red);background:var(--card)}
+.tabs{display:flex;flex-direction:column;border-right:1px solid var(--rule)}
+.tab{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:2rem 1fr;align-items:center;gap:8px;padding:18px 20px;border-bottom:1px solid var(--rule);font:700 1rem/1.25 var(--sans);color:var(--navy)}
+.tab:last-child{border-bottom:0}
+.tab .k{font:800 .78rem var(--sans);color:var(--ink-2)}
+.tab:hover{background:var(--paper-2)}
+.tab[aria-selected="true"]{background:var(--red);color:#fff}
+.tab[aria-selected="true"] .k{color:#fff;opacity:.8}
+.tab:focus-visible{outline:3px solid var(--navy);outline-offset:-3px}
+.panel{padding:clamp(22px,3.4vw,40px);display:grid;gap:24px;min-width:0;align-content:start}
+.panel h3{font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:900;text-transform:uppercase;letter-spacing:-.01em}
+.panel .says{font:italic 400 1.22rem/1.5 var(--serif);color:var(--navy);border-left:4px solid var(--red);padding-left:18px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.cols>div{min-width:0;display:grid;gap:10px;align-content:start}
+.cols h4{margin:0;font:700 .72rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.cols ul{margin:0;padding-left:1.15em;display:grid;gap:7px;font-size:1rem}
+.facts{display:flex;flex-wrap:wrap;gap:0;border-block:1px solid var(--rule)}
+.fact{padding:14px 26px 14px 0;margin-right:26px;border-right:1px solid var(--rule)}
+.fact:last-child{border-right:0;margin-right:0}
+.fact b{display:block;font:900 1.8rem/1 var(--sans);color:var(--navy)}
+.fact span{font:500 .8rem var(--sans);color:var(--ink-2)}
+.panel .src{font:500 .78rem var(--sans);color:var(--ink-2)}
+.panel .src a{color:var(--ink-2)}
+.watchlink{font:700 .8rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--red);text-decoration:none;justify-self:start;border-bottom:2px solid currentColor;padding-bottom:2px}
+@media (max-width:900px){
+  .explorer{grid-template-columns:1fr}
+  .tabs{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--rule)}
+  .tab{grid-template-columns:auto;white-space:nowrap;border-bottom:0;border-right:1px solid var(--rule)}
+  .tab .k{display:none}
+  .cols{grid-template-columns:1fr}
+}
+
+/* ---------- Durkeeville ---------- */
+#durkeeville{background:var(--paper)}
+.dk-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.dk-grid>*{min-width:0}
+.phases{display:flex;border:1px solid var(--rule)}
+.phase{all:unset;flex:1;cursor:pointer;text-align:center;padding:13px 8px;font:800 .82rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--navy);border-right:1px solid var(--rule)}
+.phase:last-child{border-right:0}
+.phase small{display:block;font:500 .74rem var(--sans);letter-spacing:.02em;text-transform:none;margin-top:4px;color:var(--ink-2)}
+.phase[aria-pressed="true"]{background:var(--navy);color:#fff}
+.phase[aria-pressed="true"] small{color:var(--on-navy)}
+.phase:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
+.phase-body{border:1px solid var(--rule);border-top:0;padding:20px 24px;display:grid;gap:12px}
+.phase-body ul{margin:0;padding-left:1.15em;display:grid;gap:8px}
+.ledger{border-top:4px solid var(--navy);margin:0}
+.ledger div{display:grid;grid-template-columns:1fr auto;gap:16px;padding:13px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.ledger dt{font-size:1rem}
+.ledger dd{margin:0;font:800 1.05rem var(--sans);color:var(--red);font-variant-numeric:tabular-nums;text-align:right}
+.callout{margin-top:26px;background:var(--navy);color:var(--on-navy);padding:26px 28px}
+.callout h3{color:#fff;font-size:1.3rem;text-transform:uppercase;letter-spacing:.02em;margin-bottom:10px}
+.callout h3::before{content:"";display:block;width:40px;height:4px;background:var(--red);margin-bottom:14px}
+.wait{margin-top:26px}
+.wait-bar{height:26px;background:var(--paper-2);position:relative;border:1px solid var(--rule)}
+.wait-bar i{position:absolute;inset:0 auto 0 0;width:25%;background:var(--red)}
+.wait-lab{display:flex;justify-content:space-between;gap:12px;font:600 .8rem var(--sans);margin-top:8px;color:var(--ink-2)}
+@media (max-width:860px){.dk-grid{grid-template-columns:1fr}}
+
+/* ---------- money ---------- */
+#money{background:var(--paper-2)}
+.bars{display:grid;gap:14px;max-width:900px;background:var(--card);border:1px solid var(--rule);padding:clamp(20px,3vw,32px)}
+.brow{display:grid;grid-template-columns:minmax(150px,250px) 1fr 6.5rem;gap:16px;align-items:center}
+.brow>*{min-width:0}
+.brow .lab{font:600 .95rem/1.3 var(--sans);color:var(--navy)}
+.brow .lab small{display:block;font:500 .74rem var(--sans);color:var(--ink-2)}
+.track{height:20px;background:var(--paper-2);position:relative}
+.fill{position:absolute;inset:0 auto 0 0;background:var(--river);transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.fill.held{background:repeating-linear-gradient(135deg,var(--gold) 0 6px,transparent 6px 10px);border:1px solid var(--gold)}
+.fill.red{background:var(--red)}
+.brow .val{font:800 1rem var(--sans);color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:20px;font:500 .8rem var(--sans);color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:14px;height:14px;display:inline-block}
+@media (max-width:600px){.brow{grid-template-columns:1fr 5.5rem}.brow .track{grid-column:1/-1;grid-row:2}}
+
+/* ---------- timeline ---------- */
+#history{background:var(--navy);color:var(--on-navy);border-top:0}
+#history h2{color:#fff}
+#history .eyebrow{color:#E9A3A3}
+#history .lede{color:var(--on-navy)}
+.tl{list-style:none;margin:0;padding:0;position:relative;display:grid}
+.tl::before{content:"";position:absolute;left:5.6rem;top:8px;bottom:8px;width:2px;background:rgba(255,255,255,.2)}
+.tl li{display:grid;grid-template-columns:4.6rem 2rem 1fr;padding-block:14px;align-items:start}
+.tl .yr{font:900 1.5rem/1 var(--sans);text-align:right;color:#fff}
+.tl .dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--on-navy);background:var(--navy);margin:4px 0 0 calc(1rem - 6px);position:relative;z-index:1}
+.tl li.him .dot{background:var(--red);border-color:#fff}
+.tl li.future .dot{border-style:dashed}
+.tl .ev{min-width:0}
+.tl .ev b{font:700 1.05rem var(--sans);color:#fff}
+.tl .ev p{font-size:.98rem;color:var(--on-navy)}
+.tl-key{display:flex;gap:22px;margin-bottom:22px;font:600 .78rem var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--on-navy)}
+.tl-key i{display:inline-block;width:12px;height:12px;border-radius:50%;border:2px solid var(--on-navy);margin-right:8px;vertical-align:-1px}
+.tl-key i.r{background:var(--red);border-color:#fff}
+
+/* ---------- videos ---------- */
+#watch{background:var(--paper-2);border-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chip{all:unset;cursor:pointer;font:700 .74rem var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border:1px solid var(--rule);background:var(--card);color:var(--navy);border-radius:3px}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chip:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:24px}
+.vid{display:grid;text-decoration:none;background:var(--card);border:1px solid var(--rule);align-content:start;transition:box-shadow .2s}
+.vid:hover{box-shadow:0 10px 30px rgba(20,35,60,.12)}
+.thumb{position:relative;aspect-ratio:16/9;max-width:100%;background:var(--navy);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb .play{position:absolute;left:14px;bottom:14px;background:var(--red);color:#fff;font:800 .72rem/1 var(--sans);letter-spacing:.1em;padding:8px 12px;text-transform:uppercase}
+.thumb .fallback{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font:700 1rem var(--sans);padding:14px;text-align:center}
+.vid h3{font-size:1.08rem;line-height:1.3;padding:16px 18px 0}
+.vid .meta{font:600 .74rem var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);padding:6px 18px 18px}
+.vid:hover h3{color:var(--red)}
+.channels{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px}
+
+/* ---------- join ---------- */
+#join{background:var(--navy);color:var(--on-navy);border-top:0}
+#join h2{color:#fff}
+#join .eyebrow{color:#E9A3A3}
+#join .lede{color:var(--on-navy)}
+.join-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px)}
+.join-grid>*{min-width:0}
+.meet{border:1px solid rgba(255,255,255,.25);border-left:4px solid var(--red);padding:22px 24px;display:grid;gap:8px;margin-top:28px;color:var(--on-navy)}
+.meet b{font:800 1.3rem/1.1 var(--sans);color:#fff;text-transform:uppercase}
+form{display:grid;gap:16px}
+label{display:grid;gap:6px;font:700 .72rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--on-navy)}
+input{font:400 1rem var(--serif);padding:14px;border:1px solid #3A4E72;background:var(--navy-2);color:#fff;border-radius:3px}
+input::placeholder{color:#93A2BC}
+input:focus{outline:2px solid #fff;outline-offset:1px}
+.pick{display:flex;flex-wrap:wrap;gap:8px}
+.pick label{all:unset;cursor:pointer}
+.pick input{position:absolute;opacity:0;pointer-events:none}
+.pick span{display:inline-block;font:600 .78rem var(--sans);letter-spacing:.04em;padding:9px 13px;border:1px solid #3A4E72;color:#fff;border-radius:3px}
+.pick input:checked+span{background:var(--red);border-color:var(--red)}
+.pick input:focus-visible+span{outline:2px solid #fff;outline-offset:2px}
+#join .btn.red{justify-self:start}
+.formnote{font:500 .74rem var(--sans);color:#93A2BC}
+.thanks{border:1px solid rgba(255,255,255,.3);border-left:4px solid var(--red);padding:22px;font-size:1.1rem;color:#fff}
+
+footer.site{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);color:var(--on-navy);padding-block:32px;font:500 .8rem var(--sans)}
+footer.site .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+.reveal{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.reveal.d2{animation-delay:.12s}.reveal.d3{animation-delay:.24s}
+@keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+</style>
+</head>
+<body>
+
+<div class="utility">
+  <div class="wrap">
+    <span>Jacksonville, Florida · Northside</span>
+    <span><a href="#join">Volunteer</a> &nbsp;·&nbsp; <a href="#join">Stay informed</a></span>
+  </div>
+</div>
+
+<header class="bar" id="hdr">
+  <div class="wrap">
+    <a class="mark" href="#top"><span class="seal">AB</span><b>Anthony J. Brown</b></a>
+    <nav class="nav" id="mainnav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#issues">Issues</a>
+      <a href="#durkeeville">Durkeeville</a>
+      <a href="#money">The money</a>
+      <a href="#history">History</a>
+      <a href="#watch">Watch</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    <a class="btn red small" href="#join">Get involved</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow reveal">Community advocate · Organizing since 2006</p>
+      <h1 class="reveal d2" style="margin-top:18px">When we improve our zip codes, we improve <em>all of Jacksonville.</em></h1>
+      <p class="quote-cite reveal d2">— Anthony J. Brown</p>
+      <div class="intro reveal d3">
+        <p>Anthony Brown has spent nearly two decades on the Northside asking the questions City Hall would rather skip. Who decides where the grocery stores go? Why does the same neighborhood flood every storm? And why did a morgue end up on a residential street in Brentwood?</p>
+        <div class="ctas">
+          <a class="btn red" href="#issues">Where he stands</a>
+          <a class="btn onnavy" href="#watch">Watch him speak</a>
+        </div>
+      </div>
+    </div>
+    <div class="portrait reveal d2">
+      <div class="duo"><img src="assets/anthony.jpeg" alt="Portrait of Anthony J. Brown"></div>
+      <div class="tag">Founder<br>Red Alliance for Justice<small>New Town · Jacksonville</small></div>
+    </div>
+  </div>
+
+  <div class="strip" aria-label="2027 Jacksonville city election dates">
+    <div class="wrap">
+      <div class="count num"><span id="days">—</span><small>days to the March 9, 2027 city election</small></div>
+      <div class="dates">
+        <div><b>Candidate qualifying</b>Jan 11–15, 2027</div>
+        <div><b>Register to vote by</b>Feb 8, 2027</div>
+        <div><b>First election</b>Mar 9, 2027</div>
+        <div><b>General election</b>May 18, 2027</div>
+        <div><b>On the ballot</b>Mayor · Sheriff · all 19 council seats</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="bio">
+      <p class="eyebrow">About Anthony</p>
+      <h2>Rooted on the Northside</h2>
+      <p>Anthony J. Brown is a Jacksonville community advocate and the founder of <strong>Red Alliance for Justice</strong>. The group meets every third Thursday in New Town and works to repair neighborhoods shaped by redlining, the 1968 consolidation, and decades of local policy.</p>
+      <p>He served as co-chair of the Economic Committee and on the executive board of the <strong>NAACP Jacksonville Branch</strong>. Through his channel <em>Tony's Tangent</em> and the panel podcast <em>Political Bombcast</em>, he has walked viewers through redlining maps, blighted blocks, and empty grocery corridors. He has also talked through all of it with neighbors, pastors, educators, and state lawmakers.</p>
+      <p>His argument is simple. The neighborhoods that were mapped out of investment eighty years ago are still waiting on basics: lights, crosswalks, sewer lines, a grocery store, a fair share of the budget. Fixing that is how the whole city gets stronger.</p>
+    </div>
+    <div>
+      <ul class="roles">
+        <li><span>Red Alliance for Justice</span><small>Founder</small></li>
+        <li><span>NAACP Jacksonville Branch</span><small>Economic Committee co-chair · Exec. board</small></li>
+        <li><span>Soul Fresh</span><small>Founder</small></li>
+        <li><span>Students to Troops</span><small>Founder</small></li>
+        <li><span>Operation Tiger Paw</span><small>Founder</small></li>
+        <li><span>Restoration of Pride</span><small>Founder</small></li>
+        <li><span>Tony's Tangent · Political Bombcast</span><small>Host · Co-host</small></li>
+      </ul>
+      <div class="quotes">
+        <blockquote>
+          <p>“We want to see legislation with more teeth that would restore and give the people in this community improvement in infrastructure, the ability for capital infusion, and opportunity for affordable housing.”</p>
+          <footer>To <a href="https://www.news4jax.com/news/local/2025/08/22/community-group-based-in-jacksonvilles-new-town-neighborhood-continues-fight-against-redlining/" target="_blank" rel="noopener">News4JAX</a>, August 2025</footer>
+        </blockquote>
+        <blockquote>
+          <p>“Jacksonville is a microcosm of the country. The districts that Blacks represent are the worst in the city in terms of all the community social indicators.”</p>
+          <footer>To the <a href="https://www.splcenter.org/news/2022/04/08/florida-city-racially-gerrymanders-districts-despite-black-voter-outrage" target="_blank" rel="noopener">Southern Poverty Law Center</a>, on redistricting, April 2022</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ISSUES ================= -->
+<section id="issues">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Where he stands</p>
+      <h2>Seven fights for the Northside</h2>
+      <p class="lede">Each position comes from what Anthony has said on camera, in the press, and at community meetings. Each is set against what's happening in Jacksonville right now.</p>
+    </div>
+    <div class="explorer">
+      <div class="tabs" role="tablist" aria-label="Issues" id="tabs"></div>
+      <div class="panel" role="tabpanel" id="panel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DURKEEVILLE ================= -->
+<section id="durkeeville">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Neighborhood spotlight</p>
+      <h2>Durkeeville: the Miracle on Myrtle</h2>
+      <p class="lede">In June 2025 the city finished a revitalization plan for historic Durkeeville, the neighborhood around Myrtle Avenue and Kings Road beside Edward Waters University. It lists more than 40 projects in three phases. Anthony's question is the one residents have asked since a 1996 federal grant stalled out: will the people who live here now be the ones who benefit?</p>
+    </div>
+    <div class="dk-grid">
+      <div>
+        <div class="phases" role="group" aria-label="Plan phases" id="phases"></div>
+        <div class="phase-body" id="phaseBody"></div>
+        <div class="callout">
+          <h3>“Withintrification”</h3>
+          <p>The city's plan uses the word. Anthony and his allies were saying it in 2021, when he joined a panel called <em>Withintrification and the Color of Law</em>. It means revitalization led by the people already living here: homeownership, Black-owned storefronts on Myrtle, and no pricing out the families who held the neighborhood together.</p>
+        </div>
+      </div>
+      <div>
+        <dl class="ledger">
+          <div><dt>Revitalization study, signed July 2024</dt><dd>$200K</dd></div>
+          <div><dt>Projects in the final plan (June 2025)</dt><dd>40+</dd></div>
+          <div><dt>Public investment tied to the plan</dt><dd>$400M+</dd></div>
+          <div><dt>1996 HUD grant that stalled</dt><dd>$21.5M</dd></div>
+          <div><dt>“Daisy Homes” cottages opened, Oct 2025</dt><dd>5</dd></div>
+          <div><dt>City housing dollars for those cottages</dt><dd>$1.0M</dd></div>
+          <div><dt>Monthly rent, 3-bed / 2-bath</dt><dd>$1,332</dd></div>
+        </dl>
+        <div class="wait">
+          <p class="mono" style="font-size:.78rem;letter-spacing:.06em">AFFORDABLE HOUSING, CITYWIDE</p>
+          <div class="wait-bar" role="img" aria-label="About 6,000 affordable units built or underway compared with 24,000 people on the waitlist"><i></i></div>
+          <div class="wait-lab num"><span>6,000+ units built or underway</span><span>24,000 on the waitlist</span></div>
+        </div>
+        <p class="mono" style="font-size:.72rem;color:var(--ink-2);margin-top:18px">Sources: <a href="https://www.jacksonville.gov/departments/planning-department/community-planning-division/durkeeville-revitalization-study" target="_blank" rel="noopener">City of Jacksonville</a> · <a href="https://jaxtoday.org/2024/07/01/durkeeville-revitalization-study-a-new-chapter-for-historic-black-community/" target="_blank" rel="noopener">Jax Today</a> · <a href="https://jaxtoday.org/2025/10/06/affordable-homes-durkeeville/" target="_blank" rel="noopener">Jax Today, Oct 2025</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MONEY ================= -->
+<section id="money">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Follow the dollars · FY 2026–27 city budget</p>
+      <h2>$2.03 billion. Where are the neighborhoods?</h2>
+      <p class="lede">Jacksonville's new budget passed 18–1 in September 2026. These are the lines that touch the neighborhoods Anthony organizes in. Some of the money is real. Some is on hold until the November vote on Amendment 3.</p>
+    </div>
+    <div class="bars" id="bars"></div>
+    <div class="legend">
+      <span><i style="background:var(--river)"></i>Funded in FY27</span>
+      <span><i style="background:var(--red)"></i>Multi-year commitment</span>
+      <span><i style="background:repeating-linear-gradient(135deg,var(--gold) 0 4px,transparent 4px 7px);border:1px solid var(--gold)"></i>Held back pending Amendment 3</span>
+    </div>
+    <p class="mono" style="font-size:.72rem;color:var(--ink-2);margin-top:18px">Sources: <a href="https://jaxtoday.org/2026/09/03/winners-losers-jacksonville-budget/" target="_blank" rel="noopener">Jax Today</a> · <a href="https://www.jaxdailyrecord.com/news/2026/jul/20/deegan-delivers-203-billion-budget-with-no-tax-rate-hike-or-homestead-exemption-contingency/" target="_blank" rel="noopener">Jax Daily Record</a> · <a href="https://www.jaxdailyrecord.com/news/2026/feb/10/council-passes-plan-to-distribute-40-million-to-eastside-neighborhood" target="_blank" rel="noopener">Eastside agreement</a></p>
+  </div>
+</section>
+
+<!-- ================= TIMELINE ================= -->
+<section id="history">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">How we got here</p>
+      <h2>Ninety years, one map</h2>
+      <p class="lede">The lines drawn in the 1930s still predict which Jacksonville streets flood, which lack sewer, and which wait longest for a grocery store.</p>
+    </div>
+    <div class="tl-key"><span><i></i>Jacksonville</span><span><i class="r"></i>Anthony's work</span></div>
+    <ol class="tl">
+      <li><span class="yr">1937</span><span class="dot"></span><div class="ev"><b>Redlining maps drawn.</b><p>Federal appraisers grade Black neighborhoods like Durkeeville, New Town, and the Eastside “hazardous,” cutting them off from loans for generations.</p></div></li>
+      <li><span class="yr">1968</span><span class="dot"></span><div class="ev"><b>City–county consolidation.</b><p>Residents are promised sewer service and other services. About 35 neighborhoods, many of them Black, are still on septic tanks decades later.</p></div></li>
+      <li><span class="yr">1996</span><span class="dot"></span><div class="ev"><b>$21.5M HUD grant for Durkeeville stalls.</b><p>Developers don't use the tax credits, and contamination from an old city incinerator stops construction.</p></div></li>
+      <li class="him"><span class="yr">2006</span><span class="dot"></span><div class="ev"><b>Anthony starts organizing.</b><p>The beginning of nearly twenty years of community advocacy on the Northside.</p></div></li>
+      <li><span class="yr">2020</span><span class="dot"></span><div class="ev"><b>Hemming Park's Confederate monument comes down.</b><p>The park is renamed for James Weldon Johnson, sixty years after Ax Handle Saturday.</p></div></li>
+      <li class="him"><span class="yr">2021</span><span class="dot"></span><div class="ev"><b>“Redlining in Jacksonville.”</b><p>On Tony's Tangent, Anthony lays the old maps over today's neighborhoods. He joins urban planner Ennis Davis for “Redlining… Remedies… Opportunities.”</p></div></li>
+      <li class="him"><span class="yr">2022</span><span class="dot"></span><div class="ev"><b>Fighting the new district lines.</b><p>As NAACP economic committee co-chair, he speaks out against the city's redistricting map. Red Alliance for Justice holds its first town hall.</p></div></li>
+      <li><span class="yr">2024</span><span class="dot"></span><div class="ev"><b>Durkeeville study signed.</b><p>The mayor signs $200K for a neighborhood revitalization plan.</p></div></li>
+      <li class="him"><span class="yr">2025</span><span class="dot"></span><div class="ev"><b>The morgue, and a Bill of Rights.</b><p>Red Alliance demands answers on the Medical Examiner's office built on a residential Brentwood street. The group pushes the city to codify a Neighborhood Bill of Rights for New Town, Sugar Hill, and the Northside.</p></div></li>
+      <li><span class="yr">2026</span><span class="dot"></span><div class="ev"><b>Transit crisis.</b><p>JTA faces a $39M gap. Up to 194 layoffs, Skyway passenger service ending, weekday bus cuts.</p></div></li>
+      <li class="future"><span class="yr">2027</span><span class="dot"></span><div class="ev"><b>Jacksonville votes.</b><p>Mayor, Sheriff, and all 19 City Council seats on the March 9 ballot.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= WATCH ================= -->
+<section id="watch">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Watch &amp; listen</p>
+      <h2>In his own words</h2>
+      <p class="lede">From street corners on the Northside to the podcast studio.</p>
+    </div>
+    <div class="chips" role="group" aria-label="Filter videos" id="chips"></div>
+    <div class="vgrid" id="vgrid"></div>
+    <div class="channels">
+      <a class="btn small" href="https://www.youtube.com/@tonystangentanthonybrown6708" target="_blank" rel="noopener">Tony's Tangent on YouTube ↗</a>
+      <a class="btn small" href="https://www.youtube.com/@PoliticalBombcast" target="_blank" rel="noopener">Political Bombcast ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JOIN ================= -->
+<section id="join">
+  <div class="wrap join-grid">
+    <div>
+      <p class="eyebrow">Get involved</p>
+      <h2>Show up. Third Thursdays.</h2>
+      <p class="lede" style="margin-top:18px">Red Alliance for Justice meets monthly in New Town. Bring a neighbor and bring the problem on your block: a broken streetlight, a flooded yard, a vacant lot.</p>
+      <div class="meet">
+        <b>Every third Thursday</b>
+        <span>True Church of the Living God<br>State Street · New Town, Jacksonville</span>
+        <span class="mono" style="font-size:.78rem;opacity:.75">Next: <span id="nextMeet">—</span></span>
+      </div>
+    </div>
+    <div>
+      <form id="signup" novalidate>
+        <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" placeholder="Your name" required></label>
+        <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+        <label for="f-zip">ZIP code<input id="f-zip" name="zip" inputmode="numeric" maxlength="5" placeholder="32209"></label>
+        <div style="display:grid;gap:8px">
+          <span class="mono" style="font-size:.74rem;letter-spacing:.1em">WHAT MATTERS ON YOUR BLOCK?</span>
+          <div class="pick" id="pick"></div>
+        </div>
+        <button class="btn red" type="submit">Count me in</button>
+        <p class="formnote">Preview build: this form isn't connected to a mailing list yet.</p>
+      </form>
+      <div class="thanks" id="thanks" hidden></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 Anthony J. Brown · Jacksonville, Florida</span>
+    <span>Every figure on this page is linked to its public source.</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  /* ---------- Issues ---------- */
+  const ISSUES = [
+    {k:"redlining", t:"Redlining & repair",
+     says:"Flooding on the Northside is a classic example of redlining and neglect.",
+     now:["Redlined neighborhoods like New Town, Durkeeville, and the Eastside still trail the city on income, health, and infrastructure.",
+          "The Jaguars stadium deal set aside $115M for the Eastside alone: $40M from the city and $75M from the team over 30 years.",
+          "Red Alliance for Justice is pressing the city for 'legislation with more teeth' on infrastructure, capital, and housing."],
+     push:["A repair fund for formerly redlined zip codes, written into city law with dedicated dollars and not left to year-to-year grants.",
+           "Capital access for Black-owned businesses and first-time homeowners in those zip codes.",
+           "Public, annual reporting on city spending by neighborhood."],
+     facts:[["$115M","Eastside benefits agreement"],["1937","year the redlining maps were drawn"]],
+     src:[["News4JAX, 2025","https://www.news4jax.com/news/local/2025/08/22/community-group-based-in-jacksonvilles-new-town-neighborhood-continues-fight-against-redlining/"],["Jax Daily Record","https://www.jaxdailyrecord.com/news/2026/feb/10/council-passes-plan-to-distribute-40-million-to-eastside-neighborhood"]],
+     vid:"uVI7ZC1mFoM", vidT:"Redlining in Jacksonville"},
+    {k:"rights", t:"Neighborhood Bill of Rights",
+     says:"Codify the Neighborhood Bill of Rights, so it's the law and not a promise.",
+     now:["Red Alliance is pushing to put a Neighborhood Bill of Rights into city ordinance for New Town, Sugar Hill, and other northern neighborhoods.",
+          "Codifying it was proposed at City Council in 2025."],
+     push:["Written rights to basic services: working streetlights, safe crosswalks, drainage, and code enforcement on the same timeline as any other part of town.",
+           "Real notice and a real say before the city puts a major facility in a residential neighborhood.",
+           "A public scorecard so residents can see whether the city kept its word."],
+     facts:[["3rd Thu","Red Alliance meets monthly in New Town"]],
+     src:[["News4JAX, 2025","https://www.news4jax.com/news/local/2025/08/22/community-group-based-in-jacksonvilles-new-town-neighborhood-continues-fight-against-redlining/"]],
+     vid:"fFggm8pp--8", vidT:"Red Alliance for Justice of Jacksonville", short:true},
+    {k:"morgue", t:"The Brentwood morgue",
+     says:"Repurpose the morgue that was built in a residential neighborhood.",
+     now:["The city's new Medical Examiner's office sits at 4368 N. Davis Street, inside residential Brentwood.",
+          "Red Alliance has demanded answers on how the site was chosen and is calling for the building to be put to community use."],
+     push:["A full public accounting of how the site was chosen.",
+           "A path to repurpose the facility for neighborhood use.",
+           "Siting rules that keep heavy-use facilities out of residential blocks, citywide."],
+     facts:[["N. Davis St.","Brentwood, Northside"]],
+     src:[["News4JAX, 2025","https://www.news4jax.com/news/local/2025/08/22/community-group-based-in-jacksonvilles-new-town-neighborhood-continues-fight-against-redlining/"]],
+     vid:"9z6xLzVxg-A", vidT:"Red Alliance demands answers on the morgue", short:true},
+    {k:"basics", t:"Basics first",
+     says:"Who decides where necessities are put in a neighborhood?",
+     now:["Anthony's 'Golf Courses over Grocery Stores' video asks why some neighborhoods get amenities while others can't get a grocery store or a clinic.",
+          "About 35 neighborhoods promised sewer at the 1968 consolidation are still being converted. The FY27 budget puts $25M toward it, and 400+ homes were connected from 2023 to 2026.",
+          "Christobel in Northwest Jacksonville won an EPA grant of about $6.7M to bring roughly 500 homes onto sewer by 2028."],
+     push:["Finish septic-to-sewer for every 1968 promise neighborhood on a published schedule.",
+           "Lighting, crosswalks, and sidewalks near schools, churches, and bus stops first.",
+           "Incentives aimed at bringing full-service grocery stores and clinics to food deserts."],
+     facts:[["$25M","FY27 septic phase-out"],["1968","year sewer was promised"],["~500","Christobel homes getting sewer"]],
+     src:[["City of Jacksonville","https://www.jacksonville.gov/mayor/promiseskept/infrastructure,-resilience-accountability/septic-tanks"],["Hoodline","https://hoodline.com/2026/06/feds-flush-failing-septics-to-bring-sewer-lines-to-christobel/"]],
+     vid:"cZDAS9-8LzU", vidT:"Have's and Have Nots, part 2"},
+    {k:"housing", t:"Housing without displacement",
+     says:"Revitalization should be led by the people who already live here.",
+     now:["Jacksonville counts 6,000+ affordable units built or underway, against a waitlist of 24,000 people.",
+          "Unsheltered homelessness in Duval rose 31% in the 2026 count.",
+          "Part of the city's rental assistance is on hold until the Amendment 3 vote."],
+     push:["Homeownership paths for long-time renters in Durkeeville, New Town, and the Eastside.",
+           "Tax relief for legacy homeowners so they aren't taxed out as values rise.",
+           "Blight to homes: turn city-owned vacant lots into owner-occupied housing."],
+     facts:[["24,000","on the affordable-housing waitlist"],["+31%","unsheltered homelessness, 2026"]],
+     src:[["Jax Today, Oct 2025","https://jaxtoday.org/2025/10/06/affordable-homes-durkeeville/"],["Jax Today, Jun 2026","https://jaxtoday.org/2026/06/09/homeless-increase-northeast-florida/"]],
+     vid:"43KQfdQ6Er0", vidT:"Should Anyone Live Here?"},
+    {k:"transit", t:"Buses people depend on",
+     says:"When we improve our zip codes, we improve all of Jacksonville.",
+     now:["JTA faces a $39M budget gap and has announced up to 194 layoffs and reduced weekday bus schedules.",
+          "Skyway passenger service ends November 2, 2026, and the autonomous NAVI shuttles pause January 1.",
+          "Riders on the Northside and Eastside, who depend on buses to get to work, school, and the doctor, feel these cuts first."],
+     push:["Protect the routes that carry working families before funding pilot projects.",
+           "Rider seats at the table before routes are cut.",
+           "Bus stops with shelter, lighting, and safe crossings."],
+     facts:[["$39M","JTA budget gap"],["194","possible layoffs"]],
+     src:[["Action News Jax","https://www.actionnewsjax.com/news/local/jta-announces-nearly-200-layoffs-major-service-cuts-agency-works-close-39-million-budget-gap/6PH35QX55FECFKABUDUCKCEZCA/"]],
+     vid:null},
+    {k:"accountability", t:"Accountability",
+     says:"When does voting actually help our communities? When we hold the people we elect to account.",
+     now:["Anthony has spoken out against district lines that pack Black voters together. In his words, those districts are 'the worst in the city in terms of all the community social indicators.'",
+          "All 19 City Council seats, plus Mayor and Sheriff, are on the ballot March 9, 2027."],
+     push:["Neighborhood-level reporting on where every dollar of city money lands.",
+           "Town halls in every district, every quarter, on a published calendar.",
+           "Promises written into ordinance, with dates, so voters can check the work."],
+     facts:[["19","council seats on the 2027 ballot"],["Mar 9","first election, 2027"]],
+     src:[["SPLC, 2022","https://www.splcenter.org/news/2022/04/08/florida-city-racially-gerrymanders-districts-despite-black-voter-outrage"],["Duval Elections","https://www.duvalelections.gov/361/2027-Important-Dates-and-Deadlines"]],
+     vid:"P4BmCy_Ydes", vidT:"Accountability of those we have elected"}
+  ];
+  const ytUrl = (id, short) => short ? `https://www.youtube.com/shorts/${id}` : `https://www.youtube.com/watch?v=${id}`;
+
+  const tabs = $('#tabs'), panel = $('#panel');
+  ISSUES.forEach((it, i) => {
+    const b = document.createElement('button');
+    b.className = 'tab'; b.role = 'tab'; b.id = 'tab-' + it.k;
+    b.setAttribute('aria-controls', 'panel');
+    b.innerHTML = `<span class="k num">${String(i+1).padStart(2,'0')}</span><span>${esc(it.t)}</span>`;
+    b.addEventListener('click', () => showIssue(i, true));
+    tabs.appendChild(b);
+  });
+  tabs.addEventListener('keydown', e => {
+    const btns = [...tabs.children], cur = btns.indexOf(document.activeElement);
+    if (cur < 0) return;
+    let n = null;
+    if (['ArrowDown','ArrowRight'].includes(e.key)) n = (cur + 1) % btns.length;
+    if (['ArrowUp','ArrowLeft'].includes(e.key)) n = (cur - 1 + btns.length) % btns.length;
+    if (n !== null) { e.preventDefault(); btns[n].focus(); showIssue(n, true); }
+  });
+  function showIssue(i, remember){
+    const it = ISSUES[i];
+    [...tabs.children].forEach((b, j) => { b.setAttribute('aria-selected', j === i); b.tabIndex = j === i ? 0 : -1; });
+    panel.setAttribute('aria-labelledby', 'tab-' + it.k);
+    panel.innerHTML = `
+      <h3>${esc(it.t)}</h3>
+      <p class="says">“${esc(it.says)}”</p>
+      <div class="facts">${it.facts.map(f => `<div class="fact"><b class="num">${esc(f[0])}</b><span>${esc(f[1])}</span></div>`).join('')}</div>
+      <div class="cols">
+        <div><h4>What's happening in Jacksonville</h4><ul>${it.now.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+        <div><h4>What Anthony is pushing for</h4><ul>${it.push.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+      </div>
+      ${it.vid ? `<a class="watchlink" href="${ytUrl(it.vid, it.short)}" target="_blank" rel="noopener">▶ Watch: ${esc(it.vidT)}</a>` : ''}
+      <p class="src">Sources: ${it.src.map(s => `<a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join(' · ')}</p>`;
+    if (remember) try { localStorage.setItem('ab-issue', it.k); } catch(e) {}
+  }
+  let start = 0;
+  try { const k = localStorage.getItem('ab-issue'); const f = ISSUES.findIndex(x => x.k === k); if (f >= 0) start = f; } catch(e) {}
+  showIssue(start, false);
+
+  /* ---------- Durkeeville phases ---------- */
+  const PHASES = [
+    {t:"Now", y:"2025–26", items:["Infill affordable homes on Jacksonville Housing Authority land, starting with the Daisy Homes cottages on Hart and Grothe Streets.","Sidewalk, lighting, and drainage fixes on the worst blocks.","Groundwork for Black-owned business corridors on Myrtle Avenue and Kings Road."]},
+    {t:"Next", y:"2026–29", items:["Emerald Trail Segment 7 along W. 8th Street and Myrtle Avenue.","Upgrades at historic J.P. Small Field and its museum.","Mixed-income housing on the 3+ dozen vacant properties the study identified."]},
+    {t:"Later", y:"2030+", items:["Expansion of the Dallas Graham Library.","Preservation of Mount Herman Cemetery and legacy businesses.","Long-term build-out of the corridors around Edward Waters University."]}
+  ];
+  const phases = $('#phases'), pb = $('#phaseBody');
+  PHASES.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.className = 'phase'; b.innerHTML = `${p.t}<small class="num">${p.y}</small>`;
+    b.addEventListener('click', () => showPhase(i));
+    phases.appendChild(b);
+  });
+  function showPhase(i){
+    [...phases.children].forEach((b, j) => b.setAttribute('aria-pressed', j === i));
+    pb.innerHTML = `<ul>${PHASES[i].items.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
+  }
+  showPhase(0);
+
+  /* ---------- Budget bars ---------- */
+  const BUD = [
+    {l:"Eastside benefits agreement", s:"total, city + Jaguars, through 2058", v:115, c:"red"},
+    {l:"Road resurfacing", s:"FY27", v:34.95, c:""},
+    {l:"Septic-to-sewer phase-out", s:"FY27", v:25, c:""},
+    {l:"Cultural & public-service grants", s:"in contingency", v:7.1, c:"held"},
+    {l:"Homelessness services", s:"FY27", v:4.71, c:""},
+    {l:"Eastside agreement, city share", s:"FY27 installment", v:4, c:""},
+    {l:"Telehealth", s:"half held back", v:0.75, c:"held"},
+    {l:"Rental assistance", s:"half held back", v:0.5, c:"held"}
+  ];
+  const max = Math.max(...BUD.map(b => b.v));
+  $('#bars').innerHTML = BUD.map(b => `
+    <div class="brow">
+      <div class="lab">${esc(b.l)}<small>${esc(b.s)}</small></div>
+      <div class="track"><div class="fill ${b.c}" data-w="${Math.max(b.v/max*100, .8)}" style="width:0"></div></div>
+      <div class="val num">$${b.v < 1 ? (b.v*1000).toFixed(0)+'K' : b.v.toFixed(b.v % 1 ? 2 : 0).replace(/\.?0+$/,'')+'M'}</div>
+    </div>`).join('');
+  const fills = document.querySelectorAll('.fill');
+  const grow = () => fills.forEach(f => f.style.width = f.dataset.w + '%');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { grow(); io.disconnect(); } }, {threshold:.2});
+    io.observe($('#bars'));
+    setTimeout(grow, 2500);
+  } else grow();
+
+  /* ---------- Videos ---------- */
+  const VIDS = [
+    {id:"uVI7ZC1mFoM", t:"Redlining in Jacksonville", ch:"Tony's Tangent", d:"Jul 2021", tag:"Redlining"},
+    {id:"cZDAS9-8LzU", t:"Have's and Have Nots, part 2", ch:"Tony's Tangent", d:"Jul 2021", tag:"Redlining"},
+    {id:"P4BmCy_Ydes", t:"Accountability of those we have elected", ch:"Tony's Tangent", d:"Jan 2021", tag:"Accountability"},
+    {id:"43KQfdQ6Er0", t:"Should anyone live here?", ch:"Tony's Tangent", d:"Sep 2021", tag:"Neighborhoods"},
+    {id:"9z6xLzVxg-A", t:"Red Alliance demands answers on the Brentwood morgue", ch:"Short · Dennis Sanchez", d:"Jun 2025", tag:"Neighborhoods", short:true},
+    {id:"fFggm8pp--8", t:"Red Alliance for Justice of Jacksonville", ch:"Short · Dennis Sanchez", d:"Jun 2025", tag:"Accountability", short:true},
+    {id:"eSmW-rI6990", t:"Melanin Market 2023 with Rep. Angie Nixon", ch:"Political Bombcast", d:"Jul 2023", tag:"Conversations"},
+    {id:"KDY-O0amDGM", t:"Discussing education", ch:"Political Bombcast", d:"Aug 2023", tag:"Conversations"},
+    {id:"ibEbCBt_kGU", t:"Relationships with life, with Dr. Linda J. Hart", ch:"Political Bombcast", d:"Sep 2023", tag:"Conversations"}
+  ];
+  const TAGS = ["All", ...new Set(VIDS.map(v => v.tag))];
+  const chips = $('#chips'), grid = $('#vgrid');
+  TAGS.forEach(tag => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.textContent = tag;
+    b.addEventListener('click', () => filter(tag));
+    chips.appendChild(b);
+  });
+  function filter(tag){
+    [...chips.children].forEach(b => b.setAttribute('aria-pressed', b.textContent === tag));
+    grid.innerHTML = VIDS.filter(v => tag === 'All' || v.tag === tag).map(v => `
+      <a class="vid" href="${ytUrl(v.id, v.short)}" target="_blank" rel="noopener">
+        <div class="thumb"><div class="fallback">${esc(v.t)}</div><img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play">▶ ${v.short ? 'Short' : 'Watch'}</span></div>
+        <h3>${esc(v.t)}</h3>
+        <span class="meta">${esc(v.ch)} · ${esc(v.d)}</span>
+      </a>`).join('');
+  }
+  filter('All');
+
+  /* ---------- Countdown & next meeting ---------- */
+  const today = new Date(); today.setHours(0,0,0,0);
+  const election = new Date(2027, 2, 9);
+  const days = Math.round((election - today) / 864e5);
+  $('#days').textContent = days > 0 ? days : (days === 0 ? 'Today' : 'Voted');
+  function thirdThursday(y, m){ const d = new Date(y, m, 1); const off = (4 - d.getDay() + 7) % 7; return new Date(y, m, 1 + off + 14); }
+  let nm = thirdThursday(today.getFullYear(), today.getMonth());
+  if (nm < today) nm = thirdThursday(today.getFullYear(), today.getMonth() + 1);
+  $('#nextMeet').textContent = nm.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric', year:'numeric'});
+
+  /* ---------- Sign-up ---------- */
+  const PICKS = ["Streetlights", "Flooding", "Sewer / septic", "Groceries", "Housing costs", "Bus service", "Vacant lots", "Schools"];
+  $('#pick').innerHTML = PICKS.map((p, i) => `<label><input type="checkbox" id="pk-${i}" name="issues" value="${esc(p)}"><span>${esc(p)}</span></label>`).join('');
+  $('#signup').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target, name = f.name.value.trim(), email = f.email.value.trim();
+    if (!name || !/^\S+@\S+\.\S+$/.test(email)) {
+      const t = !name ? f.name : f.email; t.focus(); t.style.borderColor = 'var(--red)'; return;
+    }
+    const picked = [...f.querySelectorAll('input[name=issues]:checked')].map(x => x.value);
+    f.hidden = true;
+    const th = $('#thanks'); th.hidden = false;
+    th.innerHTML = `<strong>Thanks, ${esc(name.split(' ')[0])}.</strong> ${picked.length ? `We heard you on ${esc(picked.join(', ').toLowerCase())}. ` : ''}See you on ${esc(nm.toLocaleDateString('en-US',{month:'long', day:'numeric'}))} in New Town.<br><span class="formnote">Preview build: nothing was sent.</span>`;
+  });
+})();
+</script>
+<script>
+(() => {
+  const hdr = document.getElementById('hdr'), mb = document.getElementById('menuBtn'), nav = document.getElementById('mainnav');
+  addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 10), {passive:true});
+  const set = o => { nav.classList.toggle('open', o); mb.setAttribute('aria-expanded', o); mb.textContent = o ? 'Close' : 'Menu'; };
+  mb.addEventListener('click', () => set(!nav.classList.contains('open')));
+  nav.addEventListener('click', e => { if (e.target.closest('a')) set(false); });
+})();
+</script>
+<script src="assets/video-modal.js"></script>
+</body>
+</html>
