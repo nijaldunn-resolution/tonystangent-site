@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://tonystangent.com/">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Anthony J. Brown for Jacksonville</title>
@@ -296,6 +297,7 @@ footer .wm b{font:900 1.4rem/1 var(--sans);color:var(--white);letter-spacing:.02
 footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.15);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.78rem}
 @media (max-width:760px){.fgrid{grid-template-columns:1fr}}
 </style>
+<script data-goatcounter="https://tonystangent.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -673,6 +675,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     const f = e.target, name = f.name.value.trim(), email = f.email.value.trim();
     if (!name) { f.name.focus(); f.name.style.borderColor = '#E9A3A3'; return; }
     if (!/^\S+@\S+\.\S+$/.test(email)) { f.email.focus(); f.email.style.borderColor = '#E9A3A3'; return; }
+    if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({path: 'signup-form', title: 'Sign-up form submitted', event: true});
     f.hidden = true;
     const ok = $('#signupOk'); ok.hidden = false;
     ok.innerHTML = `<strong>Thank you, ${esc(name.split(' ')[0])}.</strong> You'll hear from us soon. <span style="opacity:.6;font-size:.85em">(Preview build: nothing was sent.)</span>`;
