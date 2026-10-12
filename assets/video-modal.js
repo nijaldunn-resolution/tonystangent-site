@@ -43,7 +43,7 @@
       title="${(title || 'YouTube video').replace(/"/g, '&quot;')}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
       referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
     dlg.showModal();
-    if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({path: 'video-' + id, title: 'Video played: ' + (title || id), event: true});
+    if (window.umami) window.umami.track('Video played', {title: title || id});
   }
   function close(){ frame.innerHTML = ''; if (dlg.open) dlg.close(); }
 

@@ -277,7 +277,7 @@ footer.site .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:spac
 .reveal.d2{animation-delay:.12s}.reveal.d3{animation-delay:.24s}
 @keyframes rise{from{transform:translateY(14px)}to{transform:none}}
 </style>
-<script data-goatcounter="https://tonystangent.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="43e3ef21-c611-4b82-93eb-3fdca7235abe" data-domains="tonystangent.com"></script>
 </head>
 <body>
 
@@ -744,7 +744,7 @@ footer.site .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:spac
       const t = !name ? f.name : f.email; t.focus(); t.style.borderColor = 'var(--red)'; return;
     }
     const picked = [...f.querySelectorAll('input[name=issues]:checked')].map(x => x.value);
-    if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({path: 'signup-form', title: 'Sign-up form submitted', event: true});
+    if (window.umami) window.umami.track('Sign-up form submitted');
     f.hidden = true;
     const th = $('#thanks'); th.hidden = false;
     th.innerHTML = `<strong>Thanks, ${esc(name.split(' ')[0])}.</strong> ${picked.length ? `We heard you on ${esc(picked.join(', ').toLowerCase())}. ` : ''}See you on ${esc(nm.toLocaleDateString('en-US',{month:'long', day:'numeric'}))} in New Town.<br><span class="formnote">Preview build: nothing was sent.</span>`;
