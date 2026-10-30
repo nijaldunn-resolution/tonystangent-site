@@ -230,6 +230,13 @@ details.more[open] summary::after{content:" −"}
 
 /* ---------- notes ---------- */
 #notes{background:var(--mist)}
+.ballotcta{display:grid;grid-template-columns:1fr auto;gap:18px 28px;align-items:center;background:var(--navy);color:#fff;padding:24px 28px;margin-bottom:36px;border-left:6px solid var(--red)}
+.ballotcta h3{color:#fff;font-size:1.3rem;font-weight:800;line-height:1.2}
+.ballotcta p{font:500 .92rem/1.5 var(--sans);color:#C9D2E0;margin-top:6px;max-width:60ch}
+.ballotcta .acts{display:flex;flex-wrap:wrap;gap:10px}
+.ballotcta .btn.light{background:transparent;color:#fff;border-color:#fff}
+.ballotcta .btn.light:hover{background:#fff;color:var(--navy)}
+@media (max-width:760px){.ballotcta{grid-template-columns:1fr;padding:20px}}
 .notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;font:400 .95rem/1.6 var(--serif);color:var(--ink)}
 .notes h4{font-size:1rem;font-weight:800;margin-bottom:8px}
 .notes a{color:var(--navy);font-weight:600}
@@ -293,6 +300,10 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
       <h2>On the Duval ballot this November</h2>
       <hr class="rule-red">
       <p class="lead">Before the city races, there's this election. These are the contested races for Jacksonville voters: School Board, Florida House and Congress. Not every race is on every ballot. Your sample ballot from the Supervisor of Elections shows yours.</p>
+    </div>
+    <div class="ballotcta">
+      <div><h3>See every race on your ballot</h3><p>Your sample ballot lists every candidate you'll see, including judges, write-ins and the school tax. Enter your name and date of birth on the Supervisor of Elections site. To hear it by phone, call (904) 255-3500.</p></div>
+      <div class="acts"><a class="btn" href="https://www.duvalelections.gov/205" target="_blank" rel="noopener" data-umami-event="Sample ballot click">My sample ballot ↗</a><a class="btn light" href="https://www.vote411.org/ballot" target="_blank" rel="noopener" data-umami-event="Vote411 click">Compare on Vote411 ↗</a></div>
     </div>
     <div class="picker" id="novPicker"></div>
     <div id="novRace" aria-live="polite"></div>
