@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /review.html
 Disallow: /version-1.html
+Disallow: /races-preview.html
 
 Sitemap: https://tonystangent.com/sitemap.xml
