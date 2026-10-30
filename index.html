@@ -64,6 +64,19 @@ section{padding-block:clamp(64px,8vw,104px)}
 .btn.light{background:transparent;color:var(--white);border-color:var(--white)}
 .btn.light:hover{background:var(--white);color:var(--navy)}
 
+/* ---------- voting-season banner ---------- */
+.vbar{display:block;background:var(--red);color:var(--white);text-decoration:none;font:600 .9rem/1.35 var(--sans)}
+.vbar .wrap{display:flex;align-items:center;justify-content:center;gap:10px 16px;flex-wrap:wrap;padding-block:11px;text-align:center}
+.vbar b{font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.72rem;border:1px solid rgba(255,255,255,.7);padding:4px 7px;border-radius:2px}
+.vbar u{text-underline-offset:3px;white-space:nowrap}
+.vbar:hover{background:var(--red-dark)}
+.vbar .short{display:none}
+@media (max-width:1360px){header.site .btn{display:none}}
+@media (max-width:640px){.vbar .long{display:none}.vbar .short{display:inline}.vbar .wrap{padding-block:9px;gap:8px}}
+.vbar:focus-visible{outline:3px solid var(--navy);outline-offset:-3px}
+.mainnav a.racetab{color:var(--red);display:inline-flex;align-items:center;gap:7px}
+.mainnav a.racetab::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red)}
+
 /* ---------- utility + header ---------- */
 .utility{background:var(--navy);color:#C9D2E0;font:500 .74rem/1 var(--sans);letter-spacing:.08em;text-transform:uppercase}
 .utility .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:36px}
@@ -75,12 +88,12 @@ header.site .wrap{display:flex;align-items:center;justify-content:space-between;
 .wordmark{text-decoration:none;display:grid;line-height:1;white-space:nowrap}
 .wordmark b{font:900 1.5rem/1 var(--sans);color:var(--navy);letter-spacing:.02em;text-transform:uppercase}
 .wordmark span{font:600 .68rem/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-top:6px}
-.mainnav{display:flex;gap:22px;white-space:nowrap;font:600 .82rem var(--sans);letter-spacing:.06em;text-transform:uppercase}
+.mainnav{display:flex;gap:18px;white-space:nowrap;font:600 .82rem var(--sans);letter-spacing:.06em;text-transform:uppercase}
 .mainnav a{text-decoration:none;color:var(--navy);padding-block:6px;border-bottom:2px solid transparent}
 .mainnav a:hover{border-bottom-color:var(--red)}
 .menu-btn{all:unset;display:none;cursor:pointer;font:700 .8rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--navy);padding:10px 0}
 .menu-btn:focus-visible{outline:3px solid var(--red)}
-@media (max-width:1080px){
+@media (max-width:1240px){
   .mainnav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--paper);flex-direction:column;gap:0;border-bottom:1px solid var(--rule);padding:8px clamp(16px,4vw,40px) 16px}
   .mainnav.open{display:flex}
   .mainnav a{padding-block:12px;border-bottom:1px solid var(--rule)}
@@ -306,6 +319,10 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
 </head>
 <body>
 
+<a class="vbar" href="races.html" data-umami-event="Home banner: races">
+  <span class="wrap"><b>Voting season</b><span class="long">Who's running for City Council in 2027, and who's paying for their campaigns?</span><u><span class="long">See every race</span><span class="short">Who's running &amp; who's paying</span> &rarr;</u></span>
+</a>
+
 <div class="utility">
   <div class="wrap">
     <span>Jacksonville, Florida</span>
@@ -317,6 +334,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
   <div class="wrap">
     <a class="wordmark" href="#top"><b>Anthony J. Brown</b><span>For Jacksonville</span></a>
     <nav class="mainnav" id="mainnav" aria-label="Main">
+      <a class="racetab" href="races.html">2027 Races</a>
       <a href="#meet">Meet Anthony</a>
       <a href="#priorities">Priorities</a>
       <a href="#durkeeville">Durkeeville</a>
@@ -340,7 +358,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
       <p class="lead">For nearly twenty years, Anthony J. Brown has worked to make sure Jacksonville's Northside gets the same basics as everywhere else: safe streets, sewer lines, good jobs, and a City Hall that keeps its word.</p>
       <div class="actions">
         <a class="btn" href="#priorities">Read the priorities</a>
-        <a class="btn outline" href="#meet">Meet Anthony</a>
+        <a class="btn outline" href="races.html">See the 2027 races</a>
       </div>
     </div>
     <div class="portrait">
@@ -516,7 +534,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
   <div class="wrap">
     <div class="fgrid">
       <div class="wm"><b>Anthony J. Brown</b><p style="margin-top:10px;max-width:40ch">Community advocate and founder of Red Alliance for Justice. Jacksonville, Florida.</p></div>
-      <div><h4>Explore</h4><ul><li><a href="#meet">Meet Anthony</a></li><li><a href="#priorities">Priorities</a></li><li><a href="#durkeeville">Durkeeville</a></li><li><a href="#media">Media</a></li></ul></div>
+      <div><h4>Explore</h4><ul><li><a href="#meet">Meet Anthony</a></li><li><a href="#priorities">Priorities</a></li><li><a href="#durkeeville">Durkeeville</a></li><li><a href="races.html">2027 Races</a></li><li><a href="#media">Media</a></li></ul></div>
       <div><h4>Follow</h4><ul><li><a href="https://www.youtube.com/@tonystangentanthonybrown6708" target="_blank" rel="noopener">Tony's Tangent on YouTube</a></li><li><a href="https://www.youtube.com/@PoliticalBombcast" target="_blank" rel="noopener">Political Bombcast on YouTube</a></li></ul></div>
     </div>
     <div class="legal"><span>© 2026 Anthony J. Brown</span><span>Facts on this site link to their public sources.</span></div>

@@ -1,0 +1,62 @@
+name: Daily races update
+
+# Refreshes assets/races-data.js from the Duval County Supervisor of Elections
+# campaign finance filings once a day, and opens an issue when someone files
+# or drops out so the race notes on races.html can be reviewed by hand.
+on:
+  schedule:
+    - cron: '17 11 * * *'   # 7:17 a.m. Eastern (6:17 during standard time)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: races-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Pull the latest filings
+        run: python scripts/update_races.py | tee update.log
+
+      - name: Commit if anything changed
+        id: commit
+        run: |
+          if git diff --quiet -- assets/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No changes today."
+            exit 0
+          fi
+          git config user.name "races-update-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/
+          git commit -m "Daily races update: $(TZ=America/New_York date '+%b %-d, %Y')"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Flag new filers or withdrawals
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if grep -qE '^(NEW filer|NO LONGER ACTIVE)' update.log; then
+            {
+              echo "The daily update found a change in who is running. The money numbers are already updated on tonystangent.com/races.html."
+              echo
+              echo "Please review the race notes (who's the incumbent, open seat, etc.) and add a platform if one is available:"
+              echo
+              grep -E '^(NEW filer|NO LONGER ACTIVE)' update.log | sed 's/^/- /'
+            } > body.md
+            gh issue create --title "Races page: candidate change $(TZ=America/New_York date '+%b %-d')" --body-file body.md
+          fi
