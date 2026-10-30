@@ -296,7 +296,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     </div>
     <div class="picker" id="novPicker"></div>
     <div id="novRace" aria-live="polite"></div>
-    <p class="mapcap" style="margin-top:22px">Already decided, so not on the November ballot: FL House 13 (Audrey Gibson, D), FL House 14 (Kimberly Daniels, D) and FL House 16 (Kiyan Michael, R) were settled in August or had no opponent. FL Senate 4 (Clay Yarborough, R) was unopposed. Also on the ballot: the Duval 1-mill school tax renewal, County Court Group 13 (Octavius Holliday Jr. vs. Melina Buncome), judicial retention votes, and statewide races for U.S. Senate, Governor and Cabinet.</p>
+    <p class="mapcap" style="margin-top:22px">Already decided, so not on the November ballot: FL House 13 (Audrey Gibson, D), FL House 14 (Kimberly Daniels, D) and FL House 16 (Kiyan Michael, R) were settled in August or had no opponent. FL Senate 4 (Clay Yarborough, R) was unopposed. Source: <a href="https://dos.elections.myflorida.com/candidates/CanList.asp" target="_blank" rel="noopener">FL Division of Elections</a>, <a href="https://www.news4jax.com/vote-2026/2026/08/17/vote-2026-primary-election-results-for-duval-county-jacksonville-races-on-aug-18-2026/" target="_blank" rel="noopener">News4JAX</a>. Also on the ballot: the Duval 1-mill school tax renewal, County Court Group 13 (Octavius Holliday Jr. vs. Melina Buncome), judicial retention votes, and statewide races for U.S. Senate, Governor and Cabinet.</p>
   </div>
 </section>
 
@@ -441,7 +441,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     D3: 'Incumbent Will Lahnen (R) is running again.',
     D4: 'Incumbent Kevin Carrico (R) has not filed. Former Council President Scott Wilson (R) is running.',
     D5: 'Incumbent Joe Carlucci (R), the council vice president, is running again.',
-    D6: 'Open seat. Michael Boylan (R) is term-limited.',
+    D6: 'Incumbent Michael Boylan (R) has not filed.',
     D7: 'Open seat. Jimmy Peluso (D) is running At-Large instead. Covers Downtown, Springfield, Durkeeville, New Town, LaVilla, Riverside and Murray Hill.',
     D8: 'Incumbent Reggie Gaffney Jr. (D) is running for re-election. Covers much of the Northside.',
     D9: 'Incumbent Tyrona Clark-Murray (D) is running for re-election.',
@@ -451,6 +451,12 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     D13: 'Open seat. Rory Diamond (R) has not filed.',
     D14: 'Incumbent Rahman Johnson (D) is running again. No challenger has filed yet.',
   };
+  const SOE27 = ['Duval SOE candidate filings', 'https://www.voterfocus.com/CampaignFinance/candidate_pr.php?c=duval&el=41&e=41'];
+  const JT1013 = ['Jacksonville Today, Oct. 13, 2026', 'https://jaxtoday.org/2026/10/13/artis-gilmore-jacksonville-city-council/'];
+  const JT0820 = ['Jacksonville Today, Aug. 20, 2026', 'https://jaxtoday.org/2026/08/20/what-democratic-win-jax-council-means/'];
+  const GIS = ['City of Jacksonville district map', 'https://services9.arcgis.com/r24cv1JRnR3HZXVQ/arcgis/rest/services/CouncilDistricts_13Mar25/FeatureServer'];
+  const NOTE_SRC = { AL1:[SOE27, JT0820], AL2:[SOE27, JT1013], AL3:[SOE27, JT1013], AL4:[SOE27, JT1013], D7:[SOE27, ['Action News Jax, July 26, 2026','https://www.actionnewsjax.com/news/local/st-johns-riverkeeper-lisa-rinaman-announces-move-city-council-race/6UPBDU3RBBCLLC6ITOHTJMAC7Q/'], GIS], D8:[SOE27, GIS], D10:[SOE27, GIS] };
+  const srcLinks = list => list.map(([t, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`).join(' · ');
   const HOT = new Set(['D7','D8','D9','D10']);
 
   const partyCls = p => p === 'DEM' ? 'DEM' : p === 'REP' ? 'REP' : 'o';
@@ -626,7 +632,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     const tot = cands.reduce((s, c) => s + c.raised, 0);
     const title = r.group === 'Citywide' ? r.label : r.group === 'At-Large' ? `City Council At-Large, Group ${r.label}` : `City Council District ${r.label}`;
     $('#race').innerHTML = `
-      <div class="racehead"><div><h3>${esc(title)}</h3><p class="note">${esc(NOTES[r.key] || '')}</p></div><div class="tot"><b class="num">${usd(tot)}</b>raised by ${cands.length} candidate${cands.length === 1 ? '' : 's'}</div></div>
+      <div class="racehead"><div><h3>${esc(title)}</h3><p class="note">${esc(NOTES[r.key] || '')}</p><p class="mapcap" style="margin-top:6px">Source: ${srcLinks(NOTE_SRC[r.key] || [SOE27])}</p></div><div class="tot"><b class="num">${usd(tot)}</b>raised by ${cands.length} candidate${cands.length === 1 ? '' : 's'}</div></div>
       <div class="sortbar"><span>Sort:</span><div class="seg" id="sortSeg">${[['raised','Most raised'],['cash','Most cash left'],['spent','Most spent'],['name','A–Z']].map(([k, l]) => `<button type="button" data-s="${k}" aria-pressed="${k === sortBy}">${l}</button>`).join('')}</div></div>
       <div class="cards">${withMoney.map((c, i) => card(c, max, i === 0 && sortBy === 'raised' && c.raised > 0)).join('')}</div>
       ${zeros.length ? `<p class="zero"><b>Also filed, with no money reported yet:</b></p><div class="smalls">${zeros.map(c => `<div class="small"><div class="ph">${photo(c)}</div><div><b>${esc(c.name)}</b><span>${esc(partyName(c.party))} · ${c.asof && c.asof.startsWith('none') ? 'no report filed yet' : '$0 raised'}</span></div></div>`).join('')}</div>` : ''}`;
@@ -672,6 +678,9 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     ['NOV-FL4','Congress','FL-4','U.S. House, Florida District 4','Incumbent Aaron Bean (R). Holloway won the Democratic primary.'],
     ['NOV-FL5','Congress','FL-5','U.S. House, Florida District 5','Incumbent John Rutherford (R). Grage won the Democratic primary.'],
   ];
+  const N4P = ['News4JAX primary results', 'https://www.news4jax.com/vote-2026/2026/08/17/vote-2026-primary-election-results-for-duval-county-jacksonville-races-on-aug-18-2026/'];
+  const FLCAN = ['FL Division of Elections candidate list', 'https://dos.elections.myflorida.com/candidates/CanList.asp'];
+  const N4G = ['News4JAX voter guide', 'https://www.news4jax.com/voters-guide/'];
   let novKey = 'NOV-SB4';
   $('#novPicker').innerHTML = ['School Board','Florida House','Congress'].map(g => `<div class="pgroup"><span>${g}</span><div class="seg" role="group" aria-label="${g}">${
     NOVR.filter(r => r[1] === g).map(r => `<button type="button" data-n="${r[0]}" aria-pressed="false">${r[2]}</button>`).join('')}</div></div>`).join('');
@@ -682,7 +691,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     const cands = NOV.filter(c => c.seat === novKey).sort((a, b) => b.raised - a.raised);
     const max = Math.max(1, ...cands.map(c => c.raised));
     const tot = cands.reduce((s, c) => s + c.raised, 0);
-    $('#novRace').innerHTML = `<div class="racehead"><div><h3>${esc(r[3])}</h3><p class="note">${esc(r[4])}</p></div><div class="tot"><b class="num">${usd(tot)}</b>raised by ${cands.length} candidates</div></div>
+    $('#novRace').innerHTML = `<div class="racehead"><div><h3>${esc(r[3])}</h3><p class="note">${esc(r[4])}</p><p class="mapcap" style="margin-top:6px">Source: ${srcLinks([N4P, FLCAN, N4G])}</p></div><div class="tot"><b class="num">${usd(tot)}</b>raised by ${cands.length} candidates</div></div>
       <div class="cards">${cands.map((c, i) => card(c, max, i === 0 && c.raised > 0)).join('')}</div>`;
   }
 
