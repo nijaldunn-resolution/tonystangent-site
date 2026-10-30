@@ -103,10 +103,10 @@ header.site .wrap{display:flex;align-items:center;justify-content:space-between;
 .datebar b{color:var(--white)}
 
 /* ---------- find your district ---------- */
-.finder{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,4vw,56px);align-items:start}
+.finder{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px);align-items:start}
 .finder>*{min-width:0}
-@media (max-width:900px){.finder{grid-template-columns:1fr}}
-.mapbox{position:relative;background:var(--mist);border:1px solid var(--rule);padding:12px}
+@media (max-width:900px){.finder{grid-template-columns:1fr}.mapbox{position:relative;top:0}}
+.mapbox{position:sticky;top:96px;background:var(--mist);border:1px solid var(--rule);padding:12px}
 .mapbox svg{display:block;width:100%;height:auto}
 .mapbox path.d{fill:#DCE3EE;stroke:#fff;stroke-width:1.4;fill-rule:evenodd;cursor:pointer;transition:fill .15s}
 .mapbox path.d:hover{fill:#B9C7DD}
@@ -210,6 +210,57 @@ details.more[open] summary::after{content:" −"}
 .small .ph{width:40px;height:48px;font-size:.85rem;flex:none}
 .small b{display:block;font:700 .92rem/1.2 var(--sans);color:var(--navy)}
 .small span{font:500 .76rem/1.3 var(--sans);color:var(--ink-2)}
+
+/* ---------- accordions (no auto-scroll; everything opens in place) ---------- */
+.dpanel{display:grid;gap:14px;margin-top:6px}
+.dpanel .racehead{margin-bottom:4px;padding-bottom:14px}
+.dpanel .racehead h3{font-size:1.6rem}
+.dpanel .empty{font:500 .95rem/1.5 var(--sans);color:var(--ink-2);border:1px dashed #B9C3D3;padding:22px;text-align:center}
+.clist{display:grid;gap:8px}
+.cand{background:var(--paper);border:1px solid var(--rule);border-left:4px solid var(--navy)}
+.cand.lead1{border-left-color:var(--red)}
+.cand>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) minmax(60px,110px) 86px 16px;gap:12px;align-items:center;padding:10px 12px}
+.cand>summary::-webkit-details-marker{display:none}
+.cand>summary:hover{background:#F7F9FB}
+.cand>summary:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
+.cand>summary .ph{width:44px;height:52px;font-size:.85rem}
+.cand .nm b{display:block;font:700 1rem/1.2 var(--sans);color:var(--navy)}
+.cand .nm .tags{margin-top:5px}
+.cand .nm .tag{font-size:.6rem;padding:4px 5px}
+.cand .mini{height:8px;background:#EDF0F5;border-radius:2px;overflow:hidden}
+.cand .mini i{display:block;height:100%;background:var(--navy)}
+.cand .amt{font:800 1rem/1.1 var(--sans);color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
+.cand .amt small{display:block;font:500 .68rem/1.2 var(--sans);color:var(--ink-2);letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
+.chev{width:10px;height:10px;border-right:2px solid var(--red);border-bottom:2px solid var(--red);transform:rotate(45deg);margin-top:-5px;transition:transform .15s;justify-self:center}
+details[open]>summary .chev{transform:rotate(-135deg);margin-top:5px}
+.cand[open]>summary{border-bottom:1px solid var(--rule)}
+.cin{padding:12px 0 0}
+.cin .cfoot{margin-top:6px}
+@media (max-width:560px){.cand>summary{grid-template-columns:40px minmax(0,1fr) auto 14px}.cand .mini{display:none}}
+.races-acc{display:grid;gap:30px}
+.rgroup h3{font:700 .78rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px}
+.race{background:var(--paper);border:1px solid var(--rule)}
+.race+.race{border-top:0}
+.race>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1.2fr) 110px 120px minmax(0,1.3fr) 16px;gap:14px;align-items:center;padding:16px 18px}
+.race>summary::-webkit-details-marker{display:none}
+.race>summary:hover{background:#F7F9FB}
+.race>summary:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
+.race .rn{font:800 1.08rem/1.2 var(--sans);color:var(--navy)}
+.race .rn .hot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);margin-left:8px;vertical-align:middle}
+.race .rn small{display:block;font:500 .78rem/1.3 var(--sans);color:var(--ink-2);margin-top:3px}
+.race .rc,.race .rt,.race .rl{font:500 .8rem/1.3 var(--sans);color:var(--ink-2)}
+.race .rt b,.race .rc b{display:block;font:800 1rem/1.2 var(--sans);color:var(--navy);font-variant-numeric:tabular-nums}
+.race .rl b{display:block;font:700 .9rem/1.2 var(--sans);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.race[open]>summary{border-bottom:1px solid var(--rule);background:#F7F9FB}
+.race .rin{padding:18px;display:grid;gap:12px;background:var(--mist)}
+.race .rin .note{font:500 .95rem/1.5 var(--sans);color:var(--ink)}
+@media (max-width:760px){.race>summary{grid-template-columns:minmax(0,1fr) auto 16px}.race .rc,.race .rl{display:none}}
+.accbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:22px}
+.accbar .linkbtn{font-size:.8rem}
+.lb .cand{border-left-color:var(--rule)}
+.lb .cand[open]{border-left-color:var(--navy)}
+.cand>summary.lbrow{grid-template-columns:28px minmax(0,220px) 1fr auto;padding:10px 12px;border-radius:0}
+@media (max-width:640px){.cand>summary.lbrow{grid-template-columns:22px 1fr auto}}
 
 /* ---------- follow the money ---------- */
 .ftm-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
@@ -318,13 +369,13 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
       <p class="eyebrow">2027 city elections · Step 1</p>
       <h2>Find your council district</h2>
       <hr class="rule-red">
-      <p class="lead">Jacksonville has 14 council districts. Type your address, tap the map, or pick a neighborhood.</p>
+      <p class="lead">Jacksonville has 14 council districts. Type your address, tap the map, or pick a neighborhood. Everyone running in that district shows up right here. Tap a name to open their details.</p>
     </div>
     <div class="finder">
       <div class="mapbox" id="mapbox">
         <svg id="map" role="img" aria-label="Map of Jacksonville's 14 City Council districts"></svg>
         <div class="maptip" id="maptip"></div>
-        <p class="mapcap">District lines: City of Jacksonville Planning Dept. GIS (2025). Tap a district to see its race.</p>
+        <p class="mapcap">District lines: City of Jacksonville Planning Dept. GIS (2025). Tap a district to see everyone running there.</p>
       </div>
       <div class="lookup">
         <h3>Look up an address</h3>
@@ -339,7 +390,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
           <div class="chips" id="hoods"></div>
         </div>
         <div class="found" id="found" aria-live="polite">Your address is only used to find your district. It isn't saved anywhere.</div>
-        <p class="ballot">No matter where you live, you also vote for <b>Mayor</b>, all <b>5 At-Large council seats</b>, <b>Sheriff</b>, <b>Property Appraiser</b>, <b>Tax Collector</b> and <b>Supervisor of Elections</b>.</p>
+        <div class="dpanel" id="dpanel" aria-live="polite"></div>
       </div>
     </div>
   </div>
@@ -350,12 +401,13 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">2027 city elections · Step 2</p>
-      <h2>Compare the candidates</h2>
+      <h2>Every race, every candidate</h2>
       <hr class="rule-red">
-      <p class="lead">Pick a race. Each card shows what the candidate raised, spent and has left, who's funding them, and what they're running on.</p>
+      <p class="lead">Open any race to see everyone running. Open a candidate to see what they raised, spent and have left, who's funding them, and what they're running on.</p>
+      <p class="ballot">No matter where you live, you vote for <b>Mayor</b>, all <b>5 At-Large council seats</b>, <b>Sheriff</b>, <b>Property Appraiser</b>, <b>Tax Collector</b> and <b>Supervisor of Elections</b>, plus your own district.</p>
     </div>
-    <div class="picker" id="picker"></div>
-    <div id="race" aria-live="polite"></div>
+    <div class="accbar"><span class="mapcap" style="margin:0"><span class="hot" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);vertical-align:middle;margin-right:6px"></span>Northside and urban-core districts</span><span><button class="linkbtn" type="button" id="openAll">Open all races</button> &nbsp;·&nbsp; <button class="linkbtn" type="button" id="closeAll">Close all</button></span></div>
+    <div class="races-acc" id="racesAcc"></div>
   </div>
 </section>
 
@@ -366,7 +418,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
       <p class="eyebrow">2027 city elections · Step 3</p>
       <h2>Follow the money</h2>
       <hr class="rule-red">
-      <p class="lead">Rank every candidate in the city side by side. Tap a name to jump to that race.</p>
+      <p class="lead">Rank every candidate in the city side by side. Tap a name to open their details.</p>
     </div>
     <div class="ftm-tabs seg" id="ftmTabs" role="group" aria-label="Rank by"></div>
     <div class="ftm-scope"><span>Show:</span><div class="seg" id="ftmScope" role="group" aria-label="Which offices"></div></div>
@@ -513,7 +565,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
   Object.entries(GEO.paths).forEach(([n, p]) => {
     const path = mk('path', { d:p.d, class:'d', tabindex:'0', role:'button', 'aria-label':'District ' + n });
     const cands = inRace(byKey['D' + n]);
-    path.addEventListener('click', () => { selectRace('D' + n, true); markFound(null); track('Map district clicked', {district:n}); });
+    path.addEventListener('click', () => { showPanel(n); markFound(null); found.textContent = `District ${n} selected. Everyone running there is listed below.`; track('Map district clicked', {district:n}); });
     path.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); path.dispatchEvent(new Event('click')); } });
     path.addEventListener('mousemove', e => {
       const r = $('#mapbox').getBoundingClientRect();
@@ -552,8 +604,8 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     if (!n) { found.innerHTML = `<span class="err">That spot looks like it's outside Jacksonville's council districts. Try a full street address in Duval County.</span>`; markFound(null); return; }
     markFound([lon, lat]);
     const cands = inRace(byKey['D' + n]);
-    found.innerHTML = `<b>${esc(label)}</b> is in <b>Council District ${n}</b>. ${cands.length} candidate${cands.length === 1 ? ' has' : 's have'} filed. <a href="#races">See the race ↓</a>`;
-    selectRace('D' + n, false);
+    found.innerHTML = `<b>${esc(label)}</b> is in <b>Council District ${n}</b>. ${cands.length} candidate${cands.length === 1 ? ' has' : 's have'} filed. They're listed below.`;
+    showPanel(n);
   }
   $('#addrForm').addEventListener('submit', async e => {
     e.preventDefault();
@@ -583,27 +635,10 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
   $('#hoods').innerHTML = HOODS.map(([n], i) => `<button class="chip" type="button" data-i="${i}">${n}</button>`).join('');
   $('#hoods').addEventListener('click', e => { const b = e.target.closest('.chip'); if (!b) return; const [n, lon, lat] = HOODS[b.dataset.i]; showDistrict(lon, lat, n); });
 
-  /* ---------- picker ---------- */
-  const groups = ['Districts','At-Large','Citywide'];
-  $('#picker').innerHTML = groups.map(g => `<div class="pgroup"><span>${g === 'Districts' ? 'Council districts' : g === 'At-Large' ? 'At-large seats' : 'Citywide'}</span><div class="seg" role="group" aria-label="${g}">${
-    RACES.filter(r => r.group === g).map(r => `<button type="button" data-k="${r.key}" aria-pressed="false" title="${esc(r.long || r.label)}">${esc(r.label)}${HOT.has(r.key) ? '<span class="hot" aria-hidden="true"></span>' : ''}</button>`).join('')
-  }</div></div>`).join('') + `<p class="mapcap" style="margin:0"><span class="hot" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);vertical-align:middle;margin-right:6px"></span>Northside and urban-core districts</p>`;
-  $('#picker').addEventListener('click', e => { const b = e.target.closest('button[data-k]'); if (b) selectRace(b.dataset.k, false); });
-
-  let current = null, sortBy = 'raised';
-  function selectRace(key, scroll){
-    current = key;
-    document.querySelectorAll('#picker button[data-k]').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === key));
-    highlight(key.startsWith('D') && !isNaN(key.slice(1)) ? key.slice(1) : null);
-    renderRace();
-    try { history.replaceState(null, '', '#' + key); } catch (e) {}
-    if (scroll) $('#races').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-  }
-
-  function card(c, max, first){
-    const inc = isInc(c);
+  /* ---------- candidate details (shared by cards and dropdowns) ---------- */
+  function candBody(c, max){
     const dTotal = DONOR.reduce((s, [, f]) => s + f(c.donors), 0);
-    const donorBar = dTotal > 0 ? `<div><h5>Who's funding them</h5><div class="stack">${DONOR.map(([n, f, col]) => { const v = f(c.donors); return v > 0 ? `<i style="width:${v / dTotal * 100}%;background:${col}" title="${n}: ${usd(v)}"></i>` : ''; }).join('')}</div><div class="legend">${DONOR.map(([n, f, col]) => { const v = f(c.donors); return v > 0 ? `<span style="--c:${col}">${n} ${Math.round(v / dTotal * 100)}%</span>` : ''; }).join('')}</div></div>` : '';
+    const donorBar = dTotal > 0 ? `<div><h5>Who's funding them</h5><div class="stack">${DONOR.map(([n, f, col]) => { const v = f(c.donors); return v > 0 ? `<i style="width:${v / dTotal * 100}%;background:${col}" title="${n}: ${usd(v)}"></i>` : ''; }).join('')}</div><div class="legend">${DONOR.map(([n, f, col]) => { const v = f(c.donors); return Math.round(v / dTotal * 100) >= 1 ? `<span style="--c:${col}">${n} ${Math.round(v / dTotal * 100)}%</span>` : ''; }).join('')}</div></div>` : '';
     const cats = Object.entries(c.cats || {}).sort((a, b) => b[1] - a[1]);
     const cmax = cats.length ? cats[0][1] : 1;
     const spendHtml = cats.length ? `<div class="spend">${cats.map(([k, v]) => `<div class="srow"><span>${esc(CAT[k] || k)}</span><b class="num">${usd(v)}</b><span class="sb"><i style="width:${v / cmax * 100}%"></i></span></div>`).join('')}</div>` : `<p class="muted" style="margin-top:8px">No spending reported yet.</p>`;
@@ -616,39 +651,75 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
       ? `<ul class="plat">${c.platform.map(p => `<li>${esc(p)}</li>`).join('')}</ul><p class="mapcap" style="margin-top:6px">Source: ${srcHtml(c.psrc)}</p>`
       : `<p class="muted">No public platform found yet.</p>`;
     const link = filing(c);
-    return `<article class="card${first ? ' lead1' : ''}" id="c-${esc(c.ca || c.name)}">
-      <div class="chead"><div class="ph">${photo(c)}</div><div><h4>${esc(c.name)}</h4><div class="tags"><span class="tag ${partyCls(c.party)}">${esc(partyName(c.party))}</span>${inc ? '<span class="tag inc">Incumbent</span>' : ''}</div></div></div>
-      <div class="money">
+    const noMoney = c.raised === 0 && !c.spent;
+    return `<div class="money">
         <div class="mrow"><div>Raised<b>${usd(c.raised)}</b></div><div>Spent<b>${usd(c.spent)}</b></div><div>Cash left<b>${usd(cash(c))}</b></div></div>
-        <div class="bar" role="img" aria-label="Raised ${usd(c.raised)}, spent ${usd(c.spent)}"><i style="width:${max ? c.raised / max * 100 : 0}%"></i><i class="sp" style="width:${max ? (c.spent || 0) / max * 100 : 0}%"></i></div>
-        <div class="barcap"><em>Raised</em><em class="sp">Spent</em><span>vs. top fundraiser in race</span></div>
+        ${noMoney ? '' : `<div class="bar" role="img" aria-label="Raised ${usd(c.raised)}, spent ${usd(c.spent)}"><i style="width:${max ? c.raised / max * 100 : 0}%"></i><i class="sp" style="width:${max ? (c.spent || 0) / max * 100 : 0}%"></i></div>
+        <div class="barcap"><em>Raised</em><em class="sp">Spent</em><span>vs. top fundraiser in race</span></div>`}
         ${flag}${extra}
       </div>
       <div class="cbody">
         <div><h5>What they're running on</h5>${plat}</div>
         ${donorBar}
-        ${c.spent == null ? '' : `<details class="more"><summary>Where the money went</summary>${spendHtml}${payHtml ? '<h5 style="margin-top:14px">Biggest payments</h5>' + payHtml : ''}</details>`}
+        ${c.spent == null || noMoney ? '' : `<details class="more"><summary>Where the money went</summary>${spendHtml}${payHtml ? '<h5 style="margin-top:14px">Biggest payments</h5>' + payHtml : ''}</details>`}
       </div>
-      <div class="cfoot"><span>${esc(asofLabel(c))}</span>${c.web ? `<a href="${esc(c.web)}" target="_blank" rel="noopener">Campaign site ↗</a>` : ''}${link ? `<a href="${esc(link)}" target="_blank" rel="noopener">${c.src && c.src.includes('jaxtoday') ? 'Source ↗' : 'View filings ↗'}</a>` : ''}</div>
+      <div class="cfoot"><span>${esc(asofLabel(c))}</span>${c.web ? `<a href="${esc(c.web)}" target="_blank" rel="noopener">Campaign site ↗</a>` : ''}${link ? `<a href="${esc(link)}" target="_blank" rel="noopener">${c.src && c.src.includes('jaxtoday') ? 'Source ↗' : 'View filings ↗'}</a>` : ''}</div>`;
+  }
+  const tagsHtml = c => `<div class="tags"><span class="tag ${partyCls(c.party)}">${esc(partyName(c.party))}</span>${isInc(c) ? '<span class="tag inc">Incumbent</span>' : ''}</div>`;
+  function card(c, max, first){
+    return `<article class="card${first ? ' lead1' : ''}">
+      <div class="chead"><div class="ph">${photo(c)}</div><div><h4>${esc(c.name)}</h4>${tagsHtml(c)}</div></div>
+      ${candBody(c, max)}
     </article>`;
   }
-
-  function renderRace(){
-    const r = byKey[current]; const cands = inRace(r).slice();
-    cands.sort(sortBy === 'name' ? (a, b) => a.name.localeCompare(b.name) : (a, b) => b[sortBy] - a[sortBy] || (sortBy === 'cash' ? 0 : 0) || a.name.localeCompare(b.name));
-    if (sortBy === 'cash') cands.sort((a, b) => cash(b) - cash(a));
-    const withMoney = cands.filter(c => c.raised > 0 || c.platform.length || c.photo || isInc(c));
-    const zeros = cands.filter(c => !withMoney.includes(c));
-    const max = Math.max(1, ...cands.map(c => c.raised));
-    const tot = cands.reduce((s, c) => s + c.raised, 0);
-    const title = r.group === 'Citywide' ? r.label : r.group === 'At-Large' ? `City Council At-Large, Group ${r.label}` : `City Council District ${r.label}`;
-    $('#race').innerHTML = `
-      <div class="racehead"><div><h3>${esc(title)}</h3><p class="note">${esc(NOTES[r.key] || '')}</p><p class="mapcap" style="margin-top:6px">Source: ${srcLinks(NOTE_SRC[r.key] || [SOE27])}</p></div><div class="tot"><b class="num">${usd(tot)}</b>raised by ${cands.length} candidate${cands.length === 1 ? '' : 's'}</div></div>
-      <div class="sortbar"><span>Sort:</span><div class="seg" id="sortSeg">${[['raised','Most raised'],['cash','Most cash left'],['spent','Most spent'],['name','A–Z']].map(([k, l]) => `<button type="button" data-s="${k}" aria-pressed="${k === sortBy}">${l}</button>`).join('')}</div></div>
-      <div class="cards">${withMoney.map((c, i) => card(c, max, i === 0 && sortBy === 'raised' && c.raised > 0)).join('')}</div>
-      ${zeros.length ? `<p class="zero"><b>Also filed, with no money reported yet:</b></p><div class="smalls">${zeros.map(c => `<div class="small"><div class="ph">${photo(c)}</div><div><b>${esc(c.name)}</b><span>${esc(partyName(c.party))} · ${c.asof && c.asof.startsWith('none') ? 'no report filed yet' : '$0 raised'}</span></div></div>`).join('')}</div>` : ''}`;
-    $('#sortSeg').addEventListener('click', e => { const b = e.target.closest('button[data-s]'); if (b) { sortBy = b.dataset.s; renderRace(); } });
+  // One candidate as a dropdown row: summary shows the headline, body opens in place.
+  function candRow(c, max, first, label){
+    const sub = label || (c.raised > 0 ? 'raised' : c.asof && String(c.asof).startsWith('none') ? 'no report yet' : 'raised');
+    return `<details class="cand${first ? ' lead1' : ''}">
+      <summary><span class="ph">${photo(c)}</span><span class="nm"><b>${esc(c.name)}</b>${tagsHtml(c)}</span><span class="mini" aria-hidden="true"><i style="width:${max ? c.raised / max * 100 : 0}%"></i></span><span class="amt">${usd(c.raised)}<small>${esc(sub)}</small></span><span class="chev" aria-hidden="true"></span></summary>
+      <div class="cin">${candBody(c, max)}</div>
+    </details>`;
   }
+  const sortRaised = list => list.slice().sort((a, b) => b.raised - a.raised || a.name.localeCompare(b.name));
+  const raceTitle = r => r.group === 'Citywide' ? r.label : r.group === 'At-Large' ? `At-Large, Group ${r.label}` : `District ${r.label}`;
+  function candList(r){
+    const cands = sortRaised(inRace(r));
+    const max = Math.max(1, ...cands.map(c => c.raised));
+    return `<div class="clist">${cands.map((c, i) => candRow(c, max, i === 0 && c.raised > 0)).join('')}</div>`;
+  }
+
+  /* ---------- district panel (step 1): updates in place, never scrolls ---------- */
+  function showPanel(n){
+    const r = byKey['D' + n];
+    const cands = inRace(r), tot = cands.reduce((s, c) => s + c.raised, 0);
+    highlight(n);
+    $('#dpanel').innerHTML = `<div class="racehead"><div><h3>City Council District ${n}</h3><p class="note">${esc(NOTES[r.key] || '')}</p><p class="mapcap" style="margin-top:6px">Source: ${srcLinks(NOTE_SRC[r.key] || [SOE27])}</p></div><div class="tot"><b class="num">${usd(tot)}</b>raised by ${cands.length} candidate${cands.length === 1 ? '' : 's'}</div></div>${candList(r)}`;
+    try { history.replaceState(null, '', '#D' + n); } catch (e) {}
+  }
+
+  /* ---------- every race (step 2) ---------- */
+  const groupName = { Districts:'Council districts', 'At-Large':'At-large council seats (everyone votes)', Citywide:'Citywide offices (everyone votes)' };
+  $('#racesAcc').innerHTML = ['Districts','At-Large','Citywide'].map(g => `<div class="rgroup"><h3>${groupName[g]}</h3>${
+    RACES.filter(r => r.group === g).map(r => {
+      const cands = sortRaised(inRace(r)), tot = cands.reduce((s, c) => s + c.raised, 0), top = cands[0];
+      const open = NOTES[r.key] && /^Open seat|has not filed/.test(NOTES[r.key]);
+      return `<details class="race" id="race-${r.key}" data-k="${r.key}">
+        <summary><span class="rn">${esc(raceTitle(r))}${HOT.has(r.key) ? '<span class="hot" title="Northside / urban core"></span>' : ''}<small>${(() => { const inc = cands.find(isInc); return inc ? 'Incumbent: ' + esc(inc.name) : open ? 'No incumbent running' : ''; })()}</small></span>
+          <span class="rc"><b>${cands.length}</b>candidate${cands.length === 1 ? '' : 's'}</span>
+          <span class="rt"><b>${usd(tot)}</b>raised</span>
+          <span class="rl">${top && top.raised > 0 ? `Top fundraiser<b>${esc(top.name)}</b>` : 'No money reported yet'}</span>
+          <span class="chev" aria-hidden="true"></span></summary>
+        <div class="rin"><p class="note">${esc(NOTES[r.key] || '')}</p><p class="mapcap" style="margin:0">Source: ${srcLinks(NOTE_SRC[r.key] || [SOE27])}</p></div>
+      </details>`;
+    }).join('')}</div>`).join('');
+  // Fill a race's candidate list the first time it opens.
+  $('#racesAcc').addEventListener('toggle', e => {
+    const d = e.target; if (!d.classList || !d.classList.contains('race') || !d.open || d.dataset.filled) return;
+    d.querySelector('.rin').insertAdjacentHTML('beforeend', candList(byKey[d.dataset.k])); d.dataset.filled = 1;
+    track('Race opened', {race:d.dataset.k});
+  }, true);
+  $('#openAll').addEventListener('click', () => document.querySelectorAll('#racesAcc details.race').forEach(d => d.open = true));
+  $('#closeAll').addEventListener('click', () => document.querySelectorAll('#racesAcc details.race').forEach(d => d.open = false));
 
   /* ---------- follow the money ---------- */
   const METRICS = [
@@ -671,11 +742,12 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     const max = pool.length ? f(pool[0]) : 1;
     $('#lb').innerHTML = pool.length ? pool.map((c, i) => {
       const r = raceOf(c);
-      return `<button class="lbrow" type="button" data-k="${r.key}"><span class="rk">${i + 1}</span><span class="who"><b>${esc(c.name)}</b><span>${esc(r.long || r.label)} · ${esc(partyName(c.party))}</span></span><span class="lbar"><i class="${partyCls(c.party)}" style="width:${f(c) / max * 100}%"></i></span><span class="v">${usd(f(c))}</span></button>`;
+      const rmax = Math.max(1, ...inRace(r).map(x => x.raised));
+      return `<details class="cand lbcand"><summary class="lbrow"><span class="rk">${i + 1}</span><span class="who"><b>${esc(c.name)}</b><span>${esc(r.long || r.label)} · ${esc(partyName(c.party))}</span></span><span class="lbar"><i class="${partyCls(c.party)}" style="width:${f(c) / max * 100}%"></i></span><span class="v">${usd(f(c))}</span></summary><div class="cin">${candBody(c, rmax)}</div></details>`;
     }).join('') : '<p class="muted">Nobody yet.</p>';
     $('#lbnote').textContent = note + ' Bar colors: blue Democrat, red Republican, gray other.';
   }
-  $('#lb').addEventListener('click', e => { const b = e.target.closest('.lbrow'); if (b) { selectRace(b.dataset.k, true); track('Leaderboard click', {race:b.dataset.k}); } });
+
 
   /* ---------- November 2026 ---------- */
   const NOV = window.RACES.NOV || [];
@@ -708,7 +780,8 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
 
   /* ---------- start ---------- */
   const start = (location.hash || '').slice(1);
-  selectRace(byKey[start] ? start : 'D7', false);
+  const sn = /^D(\d{1,2})$/.exec(start);
+  showPanel(sn && GEO.paths[sn[1]] ? sn[1] : 7);
   renderLB();
   renderNov();
 })();
