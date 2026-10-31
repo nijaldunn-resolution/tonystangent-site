@@ -105,8 +105,8 @@ header.site .wrap{display:flex;align-items:center;justify-content:space-between;
 /* ---------- find your district ---------- */
 .finder{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px);align-items:start}
 .finder>*{min-width:0}
-@media (max-width:900px){.finder{grid-template-columns:1fr}.mapbox{position:relative;top:0}}
 .mapbox{position:sticky;top:96px;background:var(--mist);border:1px solid var(--rule);padding:12px}
+@media (max-width:900px){.finder{grid-template-columns:1fr}.mapbox{position:relative;top:0}}
 .mapbox svg{display:block;width:100%;height:auto}
 .mapbox path.d{fill:#DCE3EE;stroke:#fff;stroke-width:1.4;fill-rule:evenodd;cursor:pointer;transition:fill .15s}
 .mapbox path.d:hover{fill:#B9C7DD}
@@ -119,7 +119,11 @@ header.site .wrap{display:flex;align-items:center;justify-content:space-between;
 .mapcap{font:500 .78rem/1.4 var(--sans);color:var(--ink-2);margin-top:10px}
 .lookup{display:grid;gap:18px}
 .lookup h3{font-size:1.35rem;font-weight:800}
-.addr{display:grid;grid-template-columns:1fr auto;gap:8px}
+.addr{display:grid;grid-template-columns:1fr auto;gap:8px;position:relative}
+.sugg{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:20;list-style:none;margin:0;padding:4px 0;background:var(--paper);border:1px solid #B9C3D3;border-radius:3px;box-shadow:0 8px 24px rgba(20,35,60,.14)}
+.sugg[hidden]{display:none}
+.sugg li{padding:11px 14px;font:500 .92rem/1.35 var(--sans);color:var(--ink);cursor:pointer}
+.sugg li[aria-selected="true"],.sugg li:hover{background:var(--mist);color:var(--navy)}
 .addr input{font:400 1rem var(--serif);padding:14px;border:1px solid #B9C3D3;border-radius:3px;min-width:0;color:var(--ink)}
 .addr input:focus{outline:2px solid var(--navy);outline-offset:1px}
 .linkbtn{all:unset;cursor:pointer;font:600 .85rem var(--sans);color:var(--navy);text-decoration:underline;text-underline-offset:3px}
@@ -379,17 +383,18 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
       </div>
       <div class="lookup">
         <h3>Look up an address</h3>
-        <form class="addr" id="addrForm" autocomplete="street-address">
+        <form class="addr" id="addrForm" autocomplete="off">
           <label class="sr" for="addr" hidden>Street address</label>
-          <input id="addr" name="addr" placeholder="e.g. 1701 Kings Rd" aria-label="Street address in Jacksonville">
+          <input id="addr" name="addr" placeholder="Start typing, e.g. 1701 Kings Rd" aria-label="Street address in Jacksonville" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="sugg" autocomplete="off">
           <button class="btn sm" type="submit">Find</button>
+          <ul class="sugg" id="sugg" role="listbox" hidden></ul>
         </form>
         <button class="linkbtn" id="geoBtn" type="button">Or use my current location</button>
         <div>
           <p class="eyebrow" style="color:var(--ink-2);margin-bottom:10px">Neighborhoods</p>
           <div class="chips" id="hoods"></div>
         </div>
-        <div class="found" id="found" aria-live="polite">Your address is only used to find your district. It isn't saved anywhere.</div>
+        <div class="found" id="found" aria-live="polite">Your address is only used to find your district. It isn't saved anywhere. To double-check, your <a href="https://www.duvalelections.gov/205" target="_blank" rel="noopener">voter status page</a> at the Supervisor of Elections lists your official district.</div>
         <div class="dpanel" id="dpanel" aria-live="polite"></div>
       </div>
     </div>
@@ -607,20 +612,77 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     found.innerHTML = `<b>${esc(label)}</b> is in <b>Council District ${n}</b>. ${cands.length} candidate${cands.length === 1 ? ' has' : 's have'} filed. They're listed below.`;
     showPanel(n);
   }
-  $('#addrForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    const q = $('#addr').value.trim(); if (!q) return;
+  /* Address search: ArcGIS World Geocoder (Duval extent), OpenStreetMap as a backup. */
+  const GEO_URL = 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/';
+  const EXTENT = '-82.06,30.10,-81.31,30.59';
+  const addr = $('#addr'), sugg = $('#sugg');
+  const short = t => t.replace(/, USA$/, '').replace(/, Jacksonville, (FL|Florida)\b/, '').replace(/,\s*$/, '');
+  async function geocode(q, magicKey){
+    let res;
+    try {
+      const u = GEO_URL + 'findAddressCandidates?f=json&maxLocations=1&outFields=Addr_type&searchExtent=' + EXTENT + '&SingleLine=' + encodeURIComponent(magicKey ? q : q + ', Jacksonville, FL') + (magicKey ? '&magicKey=' + encodeURIComponent(magicKey) : '');
+      res = await (await fetch(u)).json();
+    } catch (e) {}
+    if (res && res.candidates) {
+      const c = res.candidates[0];
+      if (!c || c.score < 80 || !/Address|StreetInt|StreetName|POI/.test(c.attributes.Addr_type)) return null;
+      return { lon: c.location.x, lat: c.location.y, label: short(c.address), exact: /PointAddress|StreetAddress|Subaddress|StreetInt/.test(c.attributes.Addr_type) };
+    }
+    const u = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=us&bounded=1&viewbox=-82.06,30.59,-81.31,30.10&q=' + encodeURIComponent(q + ', Jacksonville, FL');
+    const j = await (await fetch(u, { headers: { 'Accept': 'application/json' } })).json();
+    return j.length ? { lon: +j[0].lon, lat: +j[0].lat, label: q, exact: j[0].type === 'house' } : null;
+  }
+  async function lookup(q, magicKey){
+    closeSugg();
     found.textContent = 'Looking up that address…';
     try {
-      const u = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=us&bounded=1&viewbox=-82.06,30.59,-81.31,30.10&q=' + encodeURIComponent(q + ', Jacksonville, FL');
-      const r = await fetch(u, { headers: { 'Accept': 'application/json' } });
-      const j = await r.json();
-      if (!j.length) { found.innerHTML = `<span class="err">We couldn't find that address. Try adding the street type (Rd, Ave, St) or tap your area on the map.</span>`; return; }
-      showDistrict(+j[0].lon, +j[0].lat, q);
+      const g = await geocode(q, magicKey);
+      if (!g) { found.innerHTML = `<span class="err">We couldn't find that address. Check the house number and street name, or tap your area on the map.</span>`; track('Address lookup', {result:'not found'}); return; }
+      showDistrict(g.lon, g.lat, g.label);
+      if (!g.exact) found.insertAdjacentHTML('beforeend', ' <span class="err">This is the closest match we found, so check that it’s your street.</span>');
       track('Address lookup', {result:'found'});
     } catch (err) {
       found.innerHTML = `<span class="err">The address lookup isn't responding right now. Tap your area on the map instead.</span>`;
     }
+  }
+  let items = [], hl = -1, timer, seq = 0;
+  function closeSugg(){ sugg.hidden = true; sugg.innerHTML = ''; items = []; hl = -1; addr.setAttribute('aria-expanded', 'false'); addr.removeAttribute('aria-activedescendant'); }
+  function paint(){
+    sugg.innerHTML = items.map((it, i) => `<li role="option" id="sg${i}" data-i="${i}" aria-selected="${i === hl}">${esc(short(it.text))}</li>`).join('');
+    sugg.hidden = !items.length; addr.setAttribute('aria-expanded', String(!!items.length));
+    if (hl >= 0) addr.setAttribute('aria-activedescendant', 'sg' + hl); else addr.removeAttribute('aria-activedescendant');
+  }
+  addr.addEventListener('input', () => {
+    clearTimeout(timer);
+    const q = addr.value.trim();
+    if (q.length < 3) { closeSugg(); return; }
+    timer = setTimeout(async () => {
+      const my = ++seq;
+      try {
+        const u = GEO_URL + 'suggest?f=json&maxSuggestions=5&countryCode=USA&category=Address,Postal&searchExtent=' + EXTENT + '&text=' + encodeURIComponent(q);
+        const j = await (await fetch(u)).json();
+        if (my !== seq) return;
+        items = (j.suggestions || []).filter(x => /, FL\b/.test(x.text)); hl = -1; paint();
+      } catch (e) { closeSugg(); }
+    }, 220);
+  });
+  addr.addEventListener('keydown', e => {
+    if (sugg.hidden) return;
+    if (e.key === 'ArrowDown') { e.preventDefault(); hl = (hl + 1) % items.length; paint(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); hl = (hl - 1 + items.length) % items.length; paint(); }
+    else if (e.key === 'Escape') closeSugg();
+    else if (e.key === 'Enter' && hl >= 0) { e.preventDefault(); const it = items[hl]; addr.value = short(it.text); lookup(it.text, it.magicKey); }
+  });
+  sugg.addEventListener('mousedown', e => {
+    const li = e.target.closest('li'); if (!li) return;
+    e.preventDefault();
+    const it = items[li.dataset.i]; addr.value = short(it.text); lookup(it.text, it.magicKey);
+  });
+  addr.addEventListener('blur', () => setTimeout(closeSugg, 150));
+  $('#addrForm').addEventListener('submit', e => {
+    e.preventDefault();
+    clearTimeout(timer); seq++;
+    const q = addr.value.trim(); if (q) lookup(q);
   });
   $('#geoBtn').addEventListener('click', () => {
     if (!navigator.geolocation) { found.textContent = 'Your browser doesn’t share location. Type an address instead.'; return; }
