@@ -80,6 +80,24 @@ section{padding-block:clamp(64px,8vw,104px)}
 .mainnav a.racetab{color:var(--red);display:inline-flex;align-items:center;gap:7px}
 .mainnav a.racetab::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red)}
 
+/* ---------- folds + phone tightening ---------- */
+.fold>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;font:700 .8rem/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);padding:0 0 12px}
+.fold>summary::-webkit-details-marker{display:none}
+.fold>summary::after{content:"";width:8px;height:8px;border-right:2px solid var(--red);border-bottom:2px solid var(--red);transform:rotate(45deg);flex:none;margin-right:4px}
+.fold[open]>summary::after{transform:rotate(-135deg)}
+.fold>summary:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+@media (min-width:861px){.fold>summary{pointer-events:none}.fold>summary::after{display:none}}
+@media (max-width:860px){.fold{border:1px solid var(--rule);padding:14px 16px 4px}.fold[open]{padding-bottom:16px}.fold>summary{color:var(--navy)}}
+@media (max-width:640px){
+  section{padding-block:48px}
+  .sec-head{margin-bottom:28px}
+  .record{grid-template-columns:1fr!important;border-top:0!important;gap:0}
+  .record li{grid-template-columns:64px 1fr;column-gap:14px;padding:14px 0!important;border-top:1px solid rgba(255,255,255,.18)}
+  .record li::before{display:none}
+  .record .yr{font-size:1.3rem;grid-row:span 2;padding-top:2px}
+  .record p{font-size:.92rem}
+}
+
 /* ---------- voter guide teaser ---------- */
 .guide{background:var(--navy);color:var(--white);padding-block:clamp(48px,6vw,80px)}
 .guide .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
@@ -335,6 +353,22 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 footer .wm b{font:900 1.4rem/1 var(--sans);color:var(--white);letter-spacing:.02em;text-transform:uppercase;display:block}
 footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.15);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.78rem}
 @media (max-width:760px){.fgrid{grid-template-columns:1fr}}
+
+/* ---------- phone tightening (last so it wins) ---------- */
+@media (max-width:640px){
+  .record{grid-template-columns:1fr;border-top:0;gap:0;row-gap:0}
+  .record li{grid-template-columns:62px 1fr;column-gap:14px;row-gap:4px;padding:14px 0;border-top:1px solid rgba(255,255,255,.18)}
+  .record li::before{display:none}
+  .record .yr{font-size:1.25rem;grid-row:span 2;padding-top:2px}
+  .record p{font-size:.92rem}
+  .glance{display:none}
+  .mgrid{gap:12px}
+  .vcard{grid-template-columns:132px 1fr;align-items:center}
+  .vcard .th .fb{display:none}
+  .vcard .th .play{width:36px;height:36px;font-size:.8rem}
+  .vcard .meta{padding:10px 14px;gap:3px}
+  .vcard h3{font-size:.95rem}
+}
 </style>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="43e3ef21-c611-4b82-93eb-3fdca7235abe" data-domains="tonystangent.com"></script>
 </head>
@@ -356,10 +390,9 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     <a class="wordmark" href="#top"><b>Anthony J. Brown</b><span>Community advocate</span></a>
     <nav class="mainnav" id="mainnav" aria-label="Main">
       <a class="racetab" href="preview-races.html">2027 Races</a>
-      <a href="#meet">Meet Anthony</a>
-      <a href="#priorities">Priorities</a>
+      <a href="#priorities">Promise tracker</a>
       <a href="#durkeeville">Durkeeville</a>
-      <a href="#record">Record</a>
+      <a href="#meet">Meet Anthony</a>
       <a href="#media">Media</a>
       <a href="#involved">Get involved</a>
     </nav>
@@ -376,10 +409,10 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     <div>
       <p class="eyebrow">Community advocate · Founder, Red Alliance for Justice</p>
       <h1>Every neighborhood deserves its <span>fair share.</span></h1>
-      <p class="lead">For nearly twenty years, Anthony J. Brown has worked to make sure Jacksonville's Northside gets the same basics as everywhere else: safe streets, sewer lines, good jobs, and a City Hall that keeps its word.</p>
+      <p class="lead">Anthony J. Brown has spent nearly twenty years making sure Jacksonville's Northside gets the same basics as everywhere else. He isn't running for office. He tracks whether City Hall keeps its promises, and shows voters who's running and who's paying.</p>
       <div class="actions">
-        <a class="btn" href="#priorities">Read the priorities</a>
-        <a class="btn outline" href="preview-races.html">See the 2027 races</a>
+        <a class="btn" href="preview-races.html" data-umami-event="Hero: voter guide">Open the 2027 voter guide</a>
+        <a class="btn outline" href="#priorities" data-umami-event="Hero: promise tracker">Track City Hall's promises</a>
       </div>
     </div>
     <div class="portrait">
@@ -388,20 +421,6 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     </div>
   </div>
 </section>
-
-<!-- ========== SIGNUP BAR ========== -->
-<div class="signup" id="signup">
-  <div class="wrap">
-    <h3>Stay informed<small>Updates on the issues facing our neighborhoods.</small></h3>
-    <form id="signupForm" novalidate>
-      <input id="s-name" name="name" autocomplete="name" placeholder="Full name" aria-label="Full name">
-      <input id="s-email" name="email" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address">
-      <input id="s-zip" name="zip" inputmode="numeric" maxlength="5" placeholder="ZIP" aria-label="ZIP code">
-      <button class="btn" type="submit">Sign up</button>
-    </form>
-    <p class="ok" id="signupOk" hidden></p>
-  </div>
-</div>
 
 <!-- ========== PRESS ========== -->
 <div class="press" aria-label="Anthony has been quoted by">
@@ -433,35 +452,10 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
   </div>
 </section>
 
-<!-- ========== MEET ========== -->
-<section id="meet">
-  <div class="wrap meet">
-    <div>
-      <div class="sec-head"><p class="eyebrow">Meet Anthony</p><h2>A neighbor who shows up, and keeps showing up.</h2><hr class="rule-red"></div>
-      <div class="body">
-        <p>Anthony J. Brown has organized in Jacksonville since 2006. He founded <strong>Red Alliance for Justice</strong>, a community group that meets every month in New Town. It works to repair neighborhoods shaped by redlining, the 1968 consolidation, and decades of uneven city investment.</p>
-        <p>He served as co-chair of the Economic Committee and on the executive board of the <strong>NAACP Jacksonville Branch</strong>. He has also founded youth and community programs including Soul Fresh, Students to Troops, Operation Tiger Paw, and Restoration of Pride.</p>
-        <p>Through his program <em>Tony's Tangent</em> and the panel show <em>Political Bombcast</em>, Anthony has taken residents street by street through the city's history and its budget. He shows where the investment went and where it didn't. His belief is simple: <em>when we improve our zip codes, we improve all of Jacksonville.</em></p>
-      </div>
-    </div>
-    <aside class="glance">
-      <h3>At a glance</h3>
-      <dl>
-        <div><dt>Hometown</dt><dd>Jacksonville, Florida</dd></div>
-        <div><dt>Community organizing</dt><dd>Since 2006</dd></div>
-        <div><dt>Founder</dt><dd>Red Alliance for Justice</dd></div>
-        <div><dt>Civic leadership</dt><dd>NAACP Jacksonville Branch: Economic Committee co-chair, Executive Board</dd></div>
-        <div><dt>Programs founded</dt><dd>Soul Fresh · Students to Troops · Operation Tiger Paw · Restoration of Pride</dd></div>
-        <div><dt>Media</dt><dd>Host, Tony's Tangent · Co-host, Political Bombcast</dd></div>
-      </dl>
-    </aside>
-  </div>
-</section>
-
 <!-- ========== PRIORITIES ========== -->
 <section id="priorities">
   <div class="wrap">
-    <div class="sec-head center"><p class="eyebrow">What he fights for &amp; City Hall promise tracker</p><h2>Seven fights for the Northside</h2><hr class="rule-red"><p class="lead">What Anthony pushes for as an advocate, and whether the City of Jacksonville has kept the promises it already made. He isn't running for office. These are the city's promises, not campaign pledges. Select a fight to see the record.</p></div>
+    <div class="sec-head center"><p class="eyebrow">City Hall promise tracker</p><h2>Seven fights for the Northside</h2><hr class="rule-red"><p class="lead">What Anthony pushes for as an advocate, and whether the City of Jacksonville has kept the promises it already made. He isn't running for office. These are the city's promises, not campaign pledges. Select a fight to see the record.</p></div>
     <div class="score" id="score" aria-label="Promise tracker totals"></div>
     <div class="fights">
       <div class="ftabs" role="tablist" aria-label="Seven fights" id="ftabs"></div>
@@ -487,11 +481,37 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
       </div>
     </div>
     <div>
-      <p class="eyebrow" style="color:var(--ink-2);margin-bottom:12px">The plan, phase by phase</p>
+      <details class="fold" id="phases"><summary>The plan, phase by phase</summary>
       <div class="stepper" role="group" aria-label="Plan phases" id="stepper"></div>
       <div class="stepbody" id="stepbody" aria-live="polite"></div>
+      </details>
       <p class="srcline">Sources: <a href="https://www.jacksonville.gov/departments/planning-department/community-planning-division/durkeeville-revitalization-study" target="_blank" rel="noopener">City of Jacksonville Planning Department</a> · <a href="https://jaxtoday.org/2025/10/06/affordable-homes-durkeeville/" target="_blank" rel="noopener">Jax Today</a></p>
     </div>
+  </div>
+</section>
+
+<!-- ========== MEET ========== -->
+<section id="meet">
+  <div class="wrap meet">
+    <div>
+      <div class="sec-head"><p class="eyebrow">Meet Anthony</p><h2>A neighbor who shows up, and keeps showing up.</h2><hr class="rule-red"></div>
+      <div class="body">
+        <p>Anthony J. Brown has organized in Jacksonville since 2006. He founded <strong>Red Alliance for Justice</strong>, a community group that meets every month in New Town. It works to repair neighborhoods shaped by redlining, the 1968 consolidation, and decades of uneven city investment.</p>
+        <p>He served as co-chair of the Economic Committee and on the executive board of the <strong>NAACP Jacksonville Branch</strong>. He has also founded youth and community programs including Soul Fresh, Students to Troops, Operation Tiger Paw, and Restoration of Pride.</p>
+        <p>Through his program <em>Tony's Tangent</em> and the panel show <em>Political Bombcast</em>, Anthony has taken residents street by street through the city's history and its budget. He shows where the investment went and where it didn't. His belief is simple: <em>when we improve our zip codes, we improve all of Jacksonville.</em></p>
+      </div>
+    </div>
+    <aside class="glance">
+      <h3>At a glance</h3>
+      <dl>
+        <div><dt>Hometown</dt><dd>Jacksonville, Florida</dd></div>
+        <div><dt>Community organizing</dt><dd>Since 2006</dd></div>
+        <div><dt>Founder</dt><dd>Red Alliance for Justice</dd></div>
+        <div><dt>Civic leadership</dt><dd>NAACP Jacksonville Branch: Economic Committee co-chair, Executive Board</dd></div>
+        <div><dt>Programs founded</dt><dd>Soul Fresh · Students to Troops · Operation Tiger Paw · Restoration of Pride</dd></div>
+        <div><dt>Media</dt><dd>Host, Tony's Tangent · Co-host, Political Bombcast</dd></div>
+      </dl>
+    </aside>
   </div>
 </section>
 
@@ -531,6 +551,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     <div class="sec-head center"><p class="eyebrow">Media</p><h2>Watch Anthony</h2><hr class="rule-red"></div>
     <div class="mfilter" role="group" aria-label="Filter videos" id="mfilter"></div>
     <div class="mgrid" id="mgrid"></div>
+    <div class="channels" style="margin-top:24px"><button class="btn outline" type="button" id="mmore" hidden></button></div>
     <div class="channels">
       <a class="btn outline" href="https://www.youtube.com/@tonystangentanthonybrown6708" target="_blank" rel="noopener">Tony's Tangent channel</a>
       <a class="btn outline" href="https://www.youtube.com/@PoliticalBombcast" target="_blank" rel="noopener">Political Bombcast channel</a>
@@ -569,13 +590,27 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
   </div>
 </section>
 
+<!-- ========== SIGNUP BAR ========== -->
+<div class="signup" id="signup">
+  <div class="wrap">
+    <h3>Stay informed<small>Updates on the issues facing our neighborhoods.</small></h3>
+    <form id="signupForm" novalidate>
+      <input id="s-name" name="name" autocomplete="name" placeholder="Full name" aria-label="Full name">
+      <input id="s-email" name="email" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address">
+      <input id="s-zip" name="zip" inputmode="numeric" maxlength="5" placeholder="ZIP" aria-label="ZIP code">
+      <button class="btn" type="submit">Sign up</button>
+    </form>
+    <p class="ok" id="signupOk" hidden></p>
+  </div>
+</div>
+
 </main>
 
 <footer>
   <div class="wrap">
     <div class="fgrid">
       <div class="wm"><b>Anthony J. Brown</b><p style="margin-top:10px;max-width:40ch">Community advocate and founder of Red Alliance for Justice. Jacksonville, Florida.</p></div>
-      <div><h4>Explore</h4><ul><li><a href="#meet">Meet Anthony</a></li><li><a href="#priorities">Priorities</a></li><li><a href="#durkeeville">Durkeeville</a></li><li><a href="preview-races.html">2027 Races</a></li><li><a href="#media">Media</a></li></ul></div>
+      <div><h4>Explore</h4><ul><li><a href="preview-races.html">2027 voter guide</a></li><li><a href="#priorities">Promise tracker</a></li><li><a href="#durkeeville">Durkeeville</a></li><li><a href="#meet">Meet Anthony</a></li><li><a href="#media">Media</a></li></ul></div>
       <div><h4>Follow</h4><ul><li><a href="https://www.youtube.com/@tonystangentanthonybrown6708" target="_blank" rel="noopener">Tony's Tangent on YouTube</a></li><li><a href="https://www.youtube.com/@PoliticalBombcast" target="_blank" rel="noopener">Political Bombcast on YouTube</a></li></ul></div>
     </div>
     <div class="legal"><span>© 2026 Anthony J. Brown</span><span>Facts on this site link to their public sources.</span></div>
@@ -694,6 +729,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
   ];
   const stepper = $('#stepper'), sb = $('#stepbody');
   stepper.innerHTML = PH.map((p,i) => `<button class="step" data-i="${i}">${p[0]}<small class="num">${p[1]}</small></button>`).join('');
+  if (matchMedia('(min-width:861px)').matches) $('#phases').open = true;
   const showPh = i => { [...stepper.children].forEach((b,j) => b.setAttribute('aria-pressed', j===i)); sb.innerHTML = `<ul>${PH[i][2].map(x => `<li>${esc(x)}</li>`).join('')}</ul>`; };
   stepper.addEventListener('click', e => { const b = e.target.closest('.step'); if (b) showPh(+b.dataset.i); });
   showPh(0);
@@ -713,9 +749,14 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
   const cats = ["All", ...new Set(V.map(v => v.c))];
   const mf = $('#mfilter'), mg = $('#mgrid');
   mf.innerHTML = cats.map(c => `<button class="mf" data-c="${esc(c)}">${esc(c)}</button>`).join('');
+  const mmore = $('#mmore'); let mall = false, mcat = 'All';
+  mmore.addEventListener('click', () => { mall = true; showV(mcat); });
   const showV = c => {
+    mcat = c;
     [...mf.children].forEach(b => b.setAttribute('aria-pressed', b.dataset.c === c));
-    mg.innerHTML = V.filter(v => c === 'All' || v.c === c).map(v => `
+    const list = V.filter(v => c === 'All' || v.c === c), cut = !mall && list.length > 3;
+    mmore.hidden = !cut; if (cut) mmore.textContent = `Show all ${list.length} videos`;
+    mg.innerHTML = (cut ? list.slice(0, 3) : list).map(v => `
       <a class="vcard" href="${yt(v.id, v.sh)}" data-title="${esc(v.t)}">
         <div class="th"><span class="fb">${esc(v.t)}</span><img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true">▶</span></div>
         <div class="meta"><span class="kind">${esc(v.k)}</span><h3>${esc(v.t)}</h3><small>${esc(v.d)}</small></div>
