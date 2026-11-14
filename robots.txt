@@ -3,5 +3,7 @@ Allow: /
 Disallow: /review.html
 Disallow: /version-1.html
 Disallow: /races-preview.html
+Disallow: /preview-home.html
+Disallow: /preview-races.html
 
 Sitemap: https://tonystangent.com/sitemap.xml
