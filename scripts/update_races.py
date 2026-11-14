@@ -4,7 +4,7 @@
 Pulls the Duval County Supervisor of Elections campaign finance listing
 (VoterFocus, 2027 reporting group), then each candidate's itemized export,
 and rewrites the CANDIDATES block. Hand-curated fields (display name, photo,
-website, platform and its source) are kept. New filers are added; candidates
+website, bio, platform and its sources) are kept. New filers are added; candidates
 who are no longer active are dropped. Standard library only.
 
 Exit code 0 always unless the source looks broken, so the workflow only
@@ -177,7 +177,8 @@ def main():
             raised=round(r['raised'], 2), spent=round(r['spent'], 2), inkind=round(r['inkind'], 2),
             loans=fin.get('loans', 0), self=fin.get('self', 0), asof=asof, ca=r['ca'],
             cats=fin.get('cats', {}), donors=fin.get('donors', {}), payees=fin.get('payees', []),
-            platform=prev.get('platform', []), psrc=prev.get('psrc')))
+            platform=prev.get('platform', []), psrc=prev.get('psrc'),
+            bio=prev.get('bio'), pnote=prev.get('pnote')))
         time.sleep(0.5)
 
     def key(lst):

@@ -10,8 +10,10 @@
 <meta property="og:url" content="https://tonystangent.com/races.html">
 <meta property="og:title" content="Who's running for Jacksonville City Council in 2027, and who's paying for it">
 <meta property="og:description" content="Find your district, compare candidates, and follow the money. Built from public campaign finance filings.">
-<meta property="og:image" content="https://tonystangent.com/assets/anthony.jpeg">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://tonystangent.com/assets/share-races.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
@@ -138,6 +140,35 @@ header.site .wrap{display:flex;align-items:center;justify-content:space-between;
 .ballot{font:500 .9rem/1.55 var(--sans);color:var(--ink-2)}
 .ballot b{color:var(--navy)}
 
+/* ---------- Nov. 3 results ---------- */
+#results{background:var(--paper)}
+.rsum{display:flex;flex-wrap:wrap;gap:10px 28px;font:500 .95rem/1.5 var(--sans);color:var(--ink);border-left:4px solid var(--red);background:var(--mist);padding:16px 18px;margin-bottom:22px}
+.rsum b{color:var(--navy)}
+.rgrp{border:1px solid var(--rule);background:var(--paper)}
+.rgrp+.rgrp{border-top:0}
+.rgrp>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 18px;font:800 1.08rem/1.2 var(--sans);color:var(--navy)}
+.rgrp>summary::-webkit-details-marker{display:none}
+.rgrp>summary:hover,.rgrp[open]>summary{background:#F7F9FB}
+.rgrp>summary:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
+.rgrp>summary small{font:500 .8rem/1.3 var(--sans);color:var(--ink-2)}
+.rgrp>summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--red);border-bottom:2px solid var(--red);transform:rotate(45deg);flex:none;transition:transform .15s}
+.rgrp[open]>summary::after{transform:rotate(-135deg)}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;padding:18px;background:var(--mist);border-top:1px solid var(--rule)}
+.res{background:var(--paper);border:1px solid var(--rule);padding:16px 16px 14px;display:grid;gap:10px;align-content:start}
+.res h4{font:800 1rem/1.25 var(--sans);color:var(--navy)}
+.res h4 small{display:block;font:500 .76rem/1.3 var(--sans);color:var(--ink-2);margin-top:3px}
+.rrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;font:500 .9rem/1.3 var(--sans);color:var(--ink)}
+.rrow.win{font-weight:800;color:var(--navy)}
+.rrow .rv{font-variant-numeric:tabular-nums;white-space:nowrap}
+.rrow .rv small{font-weight:500;color:var(--ink-2);margin-left:6px}
+.rrow .rb{grid-column:1/-1;height:7px;background:var(--mist);border-radius:2px;overflow:hidden}
+.rrow .rb i{display:block;height:100%;background:#9AA7BC}
+.rrow.DEM .rb i{background:var(--dem)}.rrow.REP .rb i{background:var(--rep)}
+.rrow.win.np .rb i{background:var(--navy)}
+.rrow .won{display:inline-block;font:800 .62rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--white);background:var(--navy);padding:3px 5px;border-radius:2px;margin-left:7px;vertical-align:middle}
+.res .rnote{font:500 .82rem/1.4 var(--sans);color:var(--ink)}
+.res .rsrc{font:500 .72rem/1.35 var(--sans);color:var(--ink-2)}
+
 /* ---------- race picker ---------- */
 #races,#nov{background:var(--mist)}
 .picker{display:grid;gap:14px;margin-bottom:36px}
@@ -189,6 +220,7 @@ header.site .wrap{display:flex;align-items:center;justify-content:space-between;
 .cbody h5{font:700 .7rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin:0 0 8px}
 .plat{margin:0;padding-left:18px;font-size:.95rem;line-height:1.5}
 .plat li+li{margin-top:4px}
+.bio{font:500 .9rem/1.5 var(--sans);color:var(--ink-2);margin-bottom:14px}
 .muted{font-size:.92rem;color:var(--ink-2);font-style:italic}
 .stack{display:flex;height:14px;border-radius:2px;overflow:hidden;background:#EDF0F5}
 .stack i{display:block;height:100%}
@@ -322,10 +354,10 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
   <div class="wrap">
     <a class="wordmark" href="index.html"><b>Anthony J. Brown</b><span>Community advocate</span></a>
     <nav class="mainnav" id="mainnav" aria-label="Main">
-      <a href="index.html#meet">Meet Anthony</a>
-      <a href="index.html#priorities">Priorities</a>
-      <a href="index.html#durkeeville">Durkeeville</a>
       <a href="races.html" aria-current="page">2027 Races</a>
+      <a href="index.html#priorities">Promise tracker</a>
+      <a href="index.html#durkeeville">Durkeeville</a>
+      <a href="index.html#meet">Meet Anthony</a>
       <a href="index.html#media">Media</a>
       <a href="index.html#involved">Get involved</a>
     </nav>
@@ -433,6 +465,21 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
 </section>
 
 <!-- ========== NOTES ========== -->
+<!-- ========== NOV 3 RESULTS ========== -->
+<section id="results">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Nov. 3, 2026 election · Results</p>
+      <h2>What Jacksonville decided on Nov. 3</h2>
+      <hr class="rule-red">
+      <p class="lead">The winners of every contested race on Duval ballots, plus the school tax and the three state amendments. Tap a group to open it.</p>
+    </div>
+    <div class="rsum" id="rsum"></div>
+    <div id="rgroups"></div>
+    <p class="mapcap" style="margin-top:14px">Candidates under 0.5% aren't shown. County numbers are the Supervisor of Elections' official results. Statewide and multi-county totals are the state's unofficial returns until the state certifies them.</p>
+  </div>
+</section>
+
 <section id="notes">
   <div class="wrap">
     <div class="sec-head">
@@ -494,36 +541,38 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
 
   // Context for each seat. Only facts we could source; "not filed" means no 2027 filing as of Q3 2026.
   const NOTES = {
-    Mayor: 'Incumbent Donna Deegan (D) is running for a second term.',
-    Sheriff: 'Incumbent T.K. Waters (R) has filed for re-election.',
-    'Property Appraiser': 'Incumbent Joyce Morgan (D) is running for re-election.',
-    'Tax Collector': 'Council member Randy White (R), term-limited in District 12, is running here.',
-    'Supervisor of Elections': 'Incumbent Jerry Holland (R) is the only candidate filed so far.',
-    AL1: 'Moné Holder (D) won this seat in the August 2026 special election.',
+    Mayor: 'Incumbent Donna Deegan (D) filed for a second term in April 2026. State Rep. Wyman Duggan (R), the Florida House speaker pro tempore, entered the race Oct. 2.',
+    Sheriff: 'Incumbent T.K. Waters (R) has filed for re-election. Donzalo Solomon, running with no party affiliation, is the only challenger so far.',
+    'Property Appraiser': 'Incumbent Joyce Morgan (D) is running for re-election. Scott Pool (R) has filed to challenge her.',
+    'Tax Collector': 'Council member Randy White (R), term-limited in District 12, is running here. Addison Patrick, the Libertarian in the August 2026 council special election, has filed as a write-in.',
+    'Supervisor of Elections': 'Incumbent Jerry Holland (R) filed for re-election in April 2026 and is the only candidate so far.',
+    AL1: 'Moné Holder (D) won this seat in the August 2026 special election with 51% and is finishing the term. She has to win it again in 2027.',
     AL2: 'Open seat. Ron Salem (R) is term-limited. Teagan Belloit is no longer an active candidate as of November 2026.',
     AL3: 'Council President Nick Howland (R) faces Basketball Hall of Famer Artis Gilmore (D), who filed Oct. 13.',
     AL4: 'Open seat. Matt Carlucci (R) is term-limited. District 7 council member Jimmy Peluso (D) is running here.',
-    AL5: 'Incumbent Chris Miller (R) is running again. Darryl Demond Willie (D) filed in November 2026.',
+    AL5: 'Incumbent Chris Miller (R) is running again. Darryl Willie (D), a term-limited Duval School Board member, filed in November 2026.',
     D1: 'Incumbent Ken Amaro (R) is running again.',
-    D2: 'Incumbent Mike Gay (R) is running again.',
-    D3: 'Incumbent Will Lahnen (R) is running again. Andrew Joseph Wulfeck (D) has also filed.',
-    D4: 'Incumbent Kevin Carrico (R) has not filed. Former Council President Scott Wilson (R) is running. Pomy Singh (D) filed in November 2026.',
-    D5: 'Incumbent Joe Carlucci (R), the council vice president, is running again.',
+    D2: 'Incumbent Mike Gay (R) is running again. No challenger has filed yet.',
+    D3: 'Incumbent Will Lahnen (R) is running again. Andrew Wulfeck (D) has also filed and says he is collecting petitions to get on the ballot.',
+    D4: 'Open seat. Incumbent Kevin Carrico (R) said Sept. 28, 2026 that he won\'t seek a third term. Former Council President Scott Wilson (R) is running. Pomy Singh (D) filed in November 2026.',
+    D5: 'Incumbent Joe Carlucci (R), the council vice president, is running again. Scott Sprague is the only Democrat filed.',
     D6: 'Incumbent Michael Boylan (R) has not filed.',
-    D7: 'Open seat. Jimmy Peluso (D) is running At-Large instead. Covers Downtown, Springfield, Durkeeville, New Town, LaVilla, Riverside and Murray Hill.',
-    D8: 'Incumbent Reggie Gaffney Jr. (D) is running for re-election. Covers much of the Northside.',
+    D7: 'Open seat. Jimmy Peluso (D) is running At-Large instead. St. Johns Riverkeeper Lisa Rinaman (D) is among seven candidates. Covers Downtown, Springfield, Durkeeville, New Town, LaVilla, Riverside and Murray Hill.',
+    D8: 'Incumbent Reggie Gaffney Jr. (D) is running for re-election. His father is running in District 10. Covers much of the Northside.',
     D9: 'Incumbent Tyrona Clark-Murray (D) is running for re-election.',
-    D10: 'Incumbent Ju’Coby Pittman (D) has not filed. Former council member Reggie Gaffney Sr. is running. Diallo Seabrooks (D) filed in November 2026. Covers Brentwood, Moncrief, Biltmore and parts of the Northwest.',
+    D10: 'Open seat. Ju’Coby Pittman (D) is term-limited. Former council member Reggie Gaffney Sr. (D) is running. Marcus Givens is the only Republican. Diallo Seabrooks (D) filed in November 2026. Covers Brentwood, Moncrief, Biltmore and parts of the Northwest.',
     D11: 'Incumbent Raul Arias (R) has not filed.',
-    D12: 'Open seat. Randy White (R) is term-limited and running for Tax Collector.',
-    D13: 'Open seat. Rory Diamond (R) has not filed.',
+    D12: 'Open seat. Randy White (R) is term-limited and running for Tax Collector. Charlotte Joyce, the term-limited School Board chair, is running here.',
+    D13: 'Open seat. Rory Diamond (R) is term-limited. Jacksonville Beach Mayor Chris Hoffman has filed.',
     D14: 'Incumbent Rahman Johnson (D) is running again. No challenger has filed yet.',
   };
   const SOE27 = ['Duval SOE candidate filings', 'https://www.voterfocus.com/CampaignFinance/candidate_pr.php?c=duval&el=41&e=41'];
   const JT1013 = ['Jacksonville Today, Oct. 13, 2026', 'https://jaxtoday.org/2026/10/13/artis-gilmore-jacksonville-city-council/'];
   const JT0820 = ['Jacksonville Today, Aug. 20, 2026', 'https://jaxtoday.org/2026/08/20/what-democratic-win-jax-council-means/'];
   const GIS = ['City of Jacksonville district map', 'https://services9.arcgis.com/r24cv1JRnR3HZXVQ/arcgis/rest/services/CouncilDistricts_13Mar25/FeatureServer'];
-  const NOTE_SRC = { AL1:[SOE27, JT0820], AL2:[SOE27, JT1013], AL3:[SOE27, JT1013], AL4:[SOE27, JT1013], D7:[SOE27, ['Action News Jax, July 26, 2026','https://www.actionnewsjax.com/news/local/st-johns-riverkeeper-lisa-rinaman-announces-move-city-council-race/6UPBDU3RBBCLLC6ITOHTJMAC7Q/'], GIS], D8:[SOE27, GIS], D10:[SOE27, GIS] };
+  const JT1002 = ['Jacksonville Today, Oct. 2, 2026', 'https://jaxtoday.org/2026/10/02/duggan-announces-run-for-mayor/'];
+  const TU0728 = ['Florida Times-Union, July 28, 2026', 'https://www.yahoo.com/news/politics/articles/ex-council-members-school-board-173156490.html'];
+  const NOTE_SRC = { Mayor:[SOE27, JT1002], Sheriff:[SOE27, ['Action News Jax','https://www.actionnewsjax.com/news/local/jacksonville-sheriff-tk-waters-seeking-reelection/2XYVDY5PVFA3BESK3DDPOYY26Q/']], 'Supervisor of Elections':[SOE27, ['Jax Daily Record, April 16, 2026','https://jaxdailyrecord.com/news/2026/apr/16/mayor-donna-deegan-files-for-re-election-state-rep-wyman-duggan-says-hes-considering-a-run/']], 'Tax Collector':[SOE27, ['The Tributary, Aug. 18, 2026','https://floridatrib.org/2026/08/18/with-half-million-dollar-donation-democrat-mone-holder-flips-at-large-city-council-seat-ahead-of-budget-season/']], D4:[SOE27, ['Jacksonville Today, Sept. 28, 2026','https://jaxtoday.org/2026/09/28/carrico-wont-seek-reelection-launch-firm/']], D12:[SOE27, ['Candidate website','https://votejoyce.org/']], D13:[SOE27, TU0728], AL1:[SOE27, JT0820], AL2:[SOE27, JT1013], AL3:[SOE27, JT1013], AL4:[SOE27, JT1013], D7:[SOE27, ['Action News Jax, July 26, 2026','https://www.actionnewsjax.com/news/local/st-johns-riverkeeper-lisa-rinaman-announces-move-city-council-race/6UPBDU3RBBCLLC6ITOHTJMAC7Q/'], GIS], D8:[SOE27, TU0728, GIS], D10:[SOE27, TU0728, GIS] };
   const srcLinks = list => list.map(([t, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`).join(' · ');
   const HOT = new Set(['D7','D8','D9','D10']);
 
@@ -559,7 +608,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     [openSeats, 'council seats with no incumbent running'],
     [days, 'days until the first election (March 9, 2027)'],
   ].map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join('');
-  $('#datebar').innerHTML = `<span>Voting now: <a href="#nov" style="color:#fff;font-weight:700">Nov. 3, 2026 ballot ↓</a></span><span>Qualifying: <b>Jan. 11–15, 2027</b></span><span>First election: <b>Tue., March 9, 2027</b></span><span>General election: <b>Tue., May 18, 2027</b></span><span>Data: <b>${esc(UPDATED)}</b></span>`;
+  $('#datebar').innerHTML = `<span>Voting now: <a href="#nov" style="color:#fff;font-weight:700">Nov. 3, 2026 ballot ↓</a></span>${window.RACES.RESULTS ? `<span><a href="#results" style="color:#fff;font-weight:700">Nov. 3 results ↓</a></span>` : ''}<span>Qualifying: <b>Jan. 11–15, 2027</b></span><span>First election: <b>Tue., March 9, 2027</b></span><span>General election: <b>Tue., May 18, 2027</b></span><span>Data: <b>${esc(UPDATED)}</b></span>`;
 
   /* ---------- map ---------- */
   const svg = $('#map'), tip = $('#maptip');
@@ -710,8 +759,8 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
     const extra = (c.approx ? `<p class="mapcap" style="margin-top:10px">Reported as “${esc(c.approx)} ${usd(c.raised)}.” Spending not yet available.</p>` : '') + (c.note ? `<p class="mapcap" style="margin-top:10px">${esc(c.note)}</p>` : '');
     const flag = c.self >= 1000 && selfPct >= 15 ? `<p class="flag">${usd(c.self)} (${selfPct}%) is the candidate's own money${c.loans >= 1000 ? ', including loans' : ''}.</p>` : '';
     const plat = c.platform && c.platform.length
-      ? `<ul class="plat">${c.platform.map(p => `<li>${esc(p)}</li>`).join('')}</ul><p class="mapcap" style="margin-top:6px">Source: ${srcHtml(c.psrc)}</p>`
-      : `<p class="muted">No public platform found yet.</p>`;
+      ? `<ul class="plat">${c.platform.map(p => `<li>${esc(p)}</li>`).join('')}</ul>${c.pnote ? `<p class="mapcap" style="margin-top:6px">${esc(c.pnote)}</p>` : ''}<p class="mapcap" style="margin-top:6px">Source: ${Array.isArray(c.psrc) ? c.psrc.map(([l, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a>`).join(' · ') : srcHtml(c.psrc)}</p>`
+      : `<p class="muted">No public platform found yet. We checked for a campaign site, social pages and news coverage.</p>`;
     const link = filing(c);
     const noMoney = c.raised === 0 && !c.spent;
     return `<div class="money">
@@ -721,7 +770,7 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
         ${flag}${extra}
       </div>
       <div class="cbody">
-        <div><h5>What they're running on</h5>${plat}</div>
+        <div>${c.bio ? `<p class="bio">${esc(c.bio)}</p>` : ''}<h5>What they're running on</h5>${plat}</div>
         ${donorBar}
         ${c.spent == null || noMoney ? '' : `<details class="more"><summary>Where the money went</summary>${spendHtml}${payHtml ? '<h5 style="margin-top:14px">Biggest payments</h5>' + payHtml : ''}</details>`}
       </div>
@@ -812,6 +861,16 @@ footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255
 
 
   /* ---------- November 2026 ---------- */
+  /* ---------- Nov. 3 results ---------- */
+  (() => {
+    const RS = window.RACES.RESULTS, sec = $('#results');
+    if (!RS) { sec.hidden = true; return; }
+    const t = RS.turnout;
+    $('#rsum').innerHTML = `<span>Duval turnout: <b>${t.pct}%</b></span><span><b>${t.cast.toLocaleString('en-US')}</b> ballots cast of ${t.reg.toLocaleString('en-US')} registered voters</span>`;
+    const row = (x, r) => `<div class="rrow ${x.p === 'DEM' || x.p === 'REP' ? x.p : 'np'}${x.w ? ' win' : ''}"><span>${esc(x.n)}${x.p && !/Nonpartisan|Write-in/.test(x.p) ? ` (${esc(x.p === 'DEM' ? 'D' : x.p === 'REP' ? 'R' : x.p)})` : ''}${x.w ? `<span class="won">${r.ballot ? 'Result' : 'Won'}</span>` : ''}</span><span class="rv">${x.pct.toFixed(2)}%<small>${x.v.toLocaleString('en-US')}</small></span><span class="rb"><i style="width:${x.pct}%"></i></span></div>`;
+    $('#rgroups').innerHTML = RS.groups.map(g => `<details class="rgrp"${g.open ? ' open' : ''}><summary><span>${esc(g.g)} <small>· ${g.races.length} ${g.races.length === 1 ? 'contest' : 'contests'}</small></span></summary><div class="rgrid">${g.races.map(r => `<div class="res"><h4>${esc(r.t)}<small>${esc(r.scope)}</small></h4>${r.rows.map(x => row(x, r)).join('')}${r.note ? `<p class="rnote">${esc(r.note)}</p>` : ''}<p class="rsrc">${esc(r.status)} · <a href="${esc(r.src[1])}" target="_blank" rel="noopener">${esc(r.src[0])} ↗</a></p></div>`).join('')}</div></details>`).join('');
+  })();
+
   // After Election Day the November section and its hero link hide themselves.
   if (new Date() > new Date('2026-11-04T12:00:00-05:00')) { const s = $('#nov'); if (s) s.hidden = true; document.querySelectorAll('a[href="#nov"]').forEach(a => a.closest('span') && (a.closest('span').hidden = true)); }
   const NOV = window.RACES.NOV || [];
